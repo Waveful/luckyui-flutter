@@ -1,3 +1,3 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+Initial LuckyUI version. Check https://lucky-ui.com for components reference.
