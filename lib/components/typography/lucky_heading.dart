@@ -8,12 +8,14 @@ class LuckyHeading extends StatelessWidget {
   final Color? color;
   final double fontSize;
   final double lineHeight;
+  final FontWeight fontWeight;
   const LuckyHeading({
     super.key,
     required this.text,
     this.color,
     this.fontSize = text2xl,
     this.lineHeight = lineHeight2xl,
+    this.fontWeight = extraBoldFontWeight,
   });
 
   @override
@@ -23,7 +25,7 @@ class LuckyHeading extends StatelessWidget {
       style: TextStyle(
         color: color ?? context.luckyColors.onSurface,
         fontSize: fontSize,
-        fontWeight: extraBoldFontWeight,
+        fontWeight: fontWeight,
         height: lineHeight,
       ),
     );
