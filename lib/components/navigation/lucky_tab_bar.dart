@@ -10,11 +10,13 @@ class LuckyTabBar extends StatefulWidget {
   final TabController tabController;
   final List<LuckyTabData> tabs;
   final EdgeInsetsGeometry insets;
+  final bool isScrollable;
   const LuckyTabBar({
     super.key,
     required this.tabController,
     required this.tabs,
     this.insets = EdgeInsets.zero,
+    this.isScrollable = false,
   }) : assert(tabs.length == tabController.length);
 
   @override
@@ -37,6 +39,8 @@ class _LuckyTabBarState extends State<LuckyTabBar> {
       controller: widget.tabController,
       dividerColor: Colors.transparent,
       labelPadding: EdgeInsets.zero,
+      isScrollable: widget.isScrollable,
+      tabAlignment: widget.isScrollable ? TabAlignment.start : null,
       indicator: UnderlineTabIndicator(
         borderSide: BorderSide(
           color: context.luckyColors.onSurface,
@@ -46,7 +50,8 @@ class _LuckyTabBarState extends State<LuckyTabBar> {
       ),
       overlayColor: WidgetStateColor.resolveWith((_) => Colors.transparent),
       tabs: widget.tabs.map((entry) {
-        final bool isSelected = index == widget.tabs.indexOf(entry);
+        final int entryIndex = widget.tabs.indexOf(entry);
+        final bool isSelected = index == entryIndex;
         
         final Widget? iconWidget = entry.icon != null
           ? LuckyIcon(
@@ -64,35 +69,39 @@ class _LuckyTabBarState extends State<LuckyTabBar> {
             )
           : null;
         
-        return Tab(
-          icon: Stack(
-            clipBehavior: Clip.none,
-            alignment: Alignment.center,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  if(iconWidget != null) iconWidget,
-                  if(iconWidget != null && labelWidget != null) const SizedBox(width: spaceSm),
-                  if(labelWidget != null) labelWidget,
-                  if(entry.counter != 0) const SizedBox(width: spaceSm),
-                  if(entry.counter != 0) Padding(
-                    padding: const EdgeInsets.only(top: spaceXs),
-                    child: LuckyRedDot(
-                      counter: entry.counter,
+        final bool includePadding = widget.isScrollable;
+        return Padding(
+          padding: includePadding ? const EdgeInsets.symmetric(horizontal: spaceLg) : EdgeInsets.zero,
+          child: Tab(
+            icon: Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.center,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    if(iconWidget != null) iconWidget,
+                    if(iconWidget != null && labelWidget != null) const SizedBox(width: spaceSm),
+                    if(labelWidget != null) labelWidget,
+                    if(entry.counter != 0) const SizedBox(width: spaceSm),
+                    if(entry.counter != 0) Padding(
+                      padding: const EdgeInsets.only(top: spaceXs),
+                      child: LuckyRedDot(
+                        counter: entry.counter,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              if(entry.showRedDot && entry.counter == 0) Positioned(
-                top: -spaceXs,
-                right: entry.label != null ? -spaceSm : -spaceXs,
-                child: LuckyRedDot(
-                  counter: entry.counter,
+                  ],
                 ),
-              ),
-            ],
+                if(entry.showRedDot && entry.counter == 0) Positioned(
+                  top: -spaceXs,
+                  right: entry.label != null ? -spaceSm : -spaceXs,
+                  child: LuckyRedDot(
+                    counter: entry.counter,
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       }).toList(),

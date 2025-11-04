@@ -90,14 +90,14 @@ class LuckyShowcase extends StatefulWidget {
   State<LuckyShowcase> createState() => _LuckyShowcaseState();
 }
 
-class _LuckyShowcaseState extends State<LuckyShowcase>
-    with TickerProviderStateMixin {
+class _LuckyShowcaseState extends State<LuckyShowcase> with TickerProviderStateMixin {
   late TabController _tabController1;
   late TabController _tabController2;
   late TabController _tabController3;
   late TabController _tabController4;
   late TabController _tabController5;
   late TabController _tabController6;
+  late TabController _tabController7;
 
   final LuckyFiltersController _filtersController1 = LuckyFiltersController();
   final LuckyFiltersController _filtersController2 = LuckyFiltersController();
@@ -115,6 +115,7 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
     _tabController4 = TabController(length: 2, vsync: this);
     _tabController5 = TabController(length: 2, vsync: this);
     _tabController6 = TabController(length: 2, vsync: this);
+    _tabController7 = TabController(length: 5, vsync: this);
 
     _filtersController1.addListener(() => setState(() {}));
 
@@ -489,6 +490,17 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                               showRedDot: true,
                               counter: 7,
                             ),
+                          ],
+                        ),
+                        LuckyTabBar(
+                          tabController: _tabController7,
+                          isScrollable: true,
+                          tabs: const [
+                            LuckyTabData(label: "Explore"),
+                            LuckyTabData(label: "For You"),
+                            LuckyTabData(label: "Following"),
+                            LuckyTabData(label: "Shop"),
+                            LuckyTabData(label: "Lives"),
                           ],
                         ),
                       ],
