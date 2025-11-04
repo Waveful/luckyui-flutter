@@ -112,6 +112,7 @@ class LuckyRadio extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(width: spaceSm),
           ],
         ),
       ),
