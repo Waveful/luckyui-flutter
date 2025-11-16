@@ -1,8 +1,8 @@
 name: luckyui
-description: "Official LuckyUI design system for Flutter."
+description: "Official LuckyUI design system for Flutter. Scalable and consistent UI components for modern Flutter applications."
 version: 0.0.3
 homepage: https://lucky-ui.com
-repository: https://github.com/waveful/luckyui
+repository: https://github.com/waveful/luckyui-flutter
 
 environment:
   sdk: ^3.9.2
