@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:luckyui/animations/lucky_tap_animation.dart';
 import 'package:luckyui/components/typography/lucky_body.dart';
 import 'package:luckyui/components/typography/lucky_heading.dart';
@@ -6,29 +9,28 @@ import 'package:luckyui/theme/lucky_colors.dart';
 import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// An enumeration of toast alignment.
-enum LuckyToastAlignmentEnum { 
+enum LuckyToastAlignmentEnum {
   /// [bottom] - The toast will be displayed at the bottom of the screen.
   bottom,
-  
+
   /// [top] - The toast will be displayed at the top of the screen.
   top,
 }
 
 /// An enumeration of toast types.
-enum LuckyToastTypeEnum { 
+enum LuckyToastTypeEnum {
   /// [success] - The toast will be displayed for 4 seconds.
   success,
-  
+
   /// [warning] - The toast will be displayed for 6 seconds.
   warning,
-  
+
   /// [error] - The toast will be displayed for 8 seconds.
   error,
 }
 
 /// An extension on [LuckyToastTypeEnum] to get specific configurations.
 extension LuckyToastTypeEnumExtension on LuckyToastTypeEnum {
-
   /// The duration of the toast.
   Duration get duration => switch (this) {
     LuckyToastTypeEnum.success => const Duration(seconds: 4),
@@ -39,27 +41,49 @@ extension LuckyToastTypeEnumExtension on LuckyToastTypeEnum {
 
 /// A widget that displays a toast message.
 class LuckyToastMessenger extends StatefulWidget {
+  /// The type of the toast messenger.
+  final String type;
 
   /// Creates a new [LuckyToastMessenger] widget.
-  const LuckyToastMessenger({super.key});
+  const LuckyToastMessenger({super.key, required this.type});
 
-  /// The state of the toast messenger.
-  static late LuckyToastMessengerState _state;
+  /// The state of the toast messengers.
+  static final Map<String, LuckyToastMessengerState> _states = {};
 
   /// Shows a toast message.
   static void showToast(
     /// The text to display in the toast.
     String text, {
+
     /// The title to display in the toast.
     String? title,
+
     /// The callback to be called when the toast is tapped.
     VoidCallback? onTap,
+
     /// The type of the toast.
     LuckyToastTypeEnum type = LuckyToastTypeEnum.success,
+
     /// The alignment of the toast.
     LuckyToastAlignmentEnum alignment = LuckyToastAlignmentEnum.bottom,
   }) {
-    _state._showToast(text, title, onTap, type.duration, alignment);
+    if (alignment == LuckyToastAlignmentEnum.top) {
+      _states["notification"]?._showToast(
+        text,
+        title,
+        onTap,
+        type.duration,
+        alignment,
+      );
+    } else {
+      _states["toast"]?._showToast(
+        text,
+        title,
+        onTap,
+        type.duration,
+        alignment,
+      );
+    }
   }
 
   @override
@@ -71,16 +95,19 @@ class LuckyToastMessengerState extends State<LuckyToastMessenger> {
   bool _snackbarVisible = false;
   String _text = "";
   String? _title;
-  LuckyToastAlignmentEnum _alignment = LuckyToastAlignmentEnum.bottom;
+  late LuckyToastAlignmentEnum _alignment;
   VoidCallback? _onTap;
 
   /// Whether the toast is aligned at the bottom of the screen.
   bool get isBottom => _alignment == LuckyToastAlignmentEnum.bottom;
 
+  String? _randomId;
+
   @override
   void initState() {
     super.initState();
-    LuckyToastMessenger._state = this;
+    _alignment = widget.type == "toast" ? LuckyToastAlignmentEnum.bottom : LuckyToastAlignmentEnum.top;
+    LuckyToastMessenger._states[widget.type] = this;
   }
 
   @override
@@ -187,26 +214,39 @@ class LuckyToastMessengerState extends State<LuckyToastMessenger> {
     );
   }
 
-  void _showToast(
+  Future<void> _showToast(
     String text,
     String? title,
     VoidCallback? onTap,
     Duration duration,
     LuckyToastAlignmentEnum alignment,
-  ) {
-    setState(() {
-      _snackbarVisible = true;
-      _text = text;
-      _title = title;
-      _onTap = onTap;
-      _alignment = alignment;
-    });
-    Future.delayed(duration, () {
-      if (mounted) {
-        setState(() {
-          _snackbarVisible = false;
-        });
-      }
-    });
+  ) async {
+    final String randomId = Random().nextDouble().toString();
+    _randomId = randomId;
+
+    if (_snackbarVisible) {
+      setState(() {
+        _snackbarVisible = false;
+      });
+      await SchedulerBinding.instance.endOfFrame;
+    }
+
+    if (mounted) {
+      setState(() {
+        _snackbarVisible = true;
+        _text = text;
+        _title = title;
+        _onTap = onTap;
+        _alignment = alignment;
+      });
+
+      Future.delayed(duration, () {
+        if (mounted && _randomId == randomId) {
+          setState(() {
+            _snackbarVisible = false;
+          });
+        }
+      });
+    }
   }
 }

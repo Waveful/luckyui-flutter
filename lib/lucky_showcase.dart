@@ -136,9 +136,13 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
 
     _filtersController1.addListener(() => setState(() {}));
 
+    // Insert toast and notification overlays.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Overlay.of(context).insert(
-        OverlayEntry(builder: (BuildContext context) => LuckyToastMessenger()),
+        OverlayEntry(builder: (BuildContext context) => LuckyToastMessenger(type: "toast")),
+      );
+      Overlay.of(context).insert(
+        OverlayEntry(builder: (BuildContext context) => LuckyToastMessenger(type: "notification")),
       );
     });
   }
