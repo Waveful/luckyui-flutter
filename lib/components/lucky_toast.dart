@@ -5,37 +5,28 @@ import 'package:luckyui/components/typography/lucky_heading.dart';
 import 'package:luckyui/theme/lucky_colors.dart';
 import 'package:luckyui/theme/lucky_tokens.dart';
 
-enum LuckyToastAlignmentEnum {
-  Bottom,
-  Top,
-}
+enum LuckyToastAlignmentEnum { bottom, top }
 
-enum LuckyToastTypeEnum {
-  Success,
-  Warning,
-  Error,
-}
+enum LuckyToastTypeEnum { success, warning, error }
 
 extension LuckyToastTypeEnumExtension on LuckyToastTypeEnum {
-
-  Duration get duration => switch(this) {
-    LuckyToastTypeEnum.Success => const Duration(seconds: 4),
-    LuckyToastTypeEnum.Warning => const Duration(seconds: 6),
-    LuckyToastTypeEnum.Error => const Duration(seconds: 8),
+  Duration get duration => switch (this) {
+    LuckyToastTypeEnum.success => const Duration(seconds: 4),
+    LuckyToastTypeEnum.warning => const Duration(seconds: 6),
+    LuckyToastTypeEnum.error => const Duration(seconds: 8),
   };
 }
 
 class LuckyToastMessenger extends StatefulWidget {
-
   const LuckyToastMessenger({super.key});
 
   static late LuckyToastMessengerState _state;
   static void showToast(
-    String text,
-    {String? title,
+    String text, {
+    String? title,
     VoidCallback? onTap,
-    LuckyToastTypeEnum type = LuckyToastTypeEnum.Success,
-    LuckyToastAlignmentEnum alignment = LuckyToastAlignmentEnum.Bottom,
+    LuckyToastTypeEnum type = LuckyToastTypeEnum.success,
+    LuckyToastAlignmentEnum alignment = LuckyToastAlignmentEnum.bottom,
   }) {
     _state._showToast(text, title, onTap, type.duration, alignment);
   }
@@ -45,14 +36,13 @@ class LuckyToastMessenger extends StatefulWidget {
 }
 
 class LuckyToastMessengerState extends State<LuckyToastMessenger> {
-
   bool _snackbarVisible = false;
   String _text = "";
   String? _title;
-  LuckyToastAlignmentEnum _alignment = LuckyToastAlignmentEnum.Bottom;
+  LuckyToastAlignmentEnum _alignment = LuckyToastAlignmentEnum.bottom;
   VoidCallback? _onTap;
 
-  bool get isBottom => _alignment == LuckyToastAlignmentEnum.Bottom;
+  bool get isBottom => _alignment == LuckyToastAlignmentEnum.bottom;
 
   @override
   void initState() {
@@ -64,7 +54,7 @@ class LuckyToastMessengerState extends State<LuckyToastMessenger> {
   Widget build(BuildContext context) {
     final double maxWidth = MediaQuery.of(context).size.width - spaceSm * 2;
     final TextPainter bodyTextPainter = TextPainter(
-      textDirection: TextDirection.ltr, 
+      textDirection: TextDirection.ltr,
       text: TextSpan(
         text: _text,
         style: const TextStyle(
@@ -76,7 +66,7 @@ class LuckyToastMessengerState extends State<LuckyToastMessenger> {
     )..layout(maxWidth: maxWidth);
     final double bodyTextHeight = bodyTextPainter.size.height;
     final TextPainter titleTextPainter = TextPainter(
-      textDirection: TextDirection.ltr, 
+      textDirection: TextDirection.ltr,
       text: TextSpan(
         text: _title ?? "",
         style: const TextStyle(
@@ -88,15 +78,24 @@ class LuckyToastMessengerState extends State<LuckyToastMessenger> {
     )..layout(maxWidth: maxWidth);
     final double titleTextHeight = titleTextPainter.size.height;
 
-    final double snackbarHeight = bodyTextHeight + (_title != null ? titleTextHeight : 0.0) + spaceSm * 2;
+    final double snackbarHeight =
+        bodyTextHeight + (_title != null ? titleTextHeight : 0.0) + spaceSm * 2;
     final double screenHeight = MediaQuery.of(context).size.height;
-    final double padding = isBottom ? MediaQuery.of(context).padding.bottom : MediaQuery.of(context).padding.top;
-    final double alignmentAdjustment = ((snackbarHeight + padding) / screenHeight) * 2;
-    final double paddingAlignmentAdjustment = ((padding + spaceSm) / screenHeight) * 2;
+    final double padding = isBottom
+        ? MediaQuery.of(context).padding.bottom
+        : MediaQuery.of(context).padding.top;
+    final double alignmentAdjustment =
+        ((snackbarHeight + padding) / screenHeight) * 2;
+    final double paddingAlignmentAdjustment =
+        ((padding + spaceSm) / screenHeight) * 2;
 
-    final AlignmentGeometry visibleAlignment = isBottom ? Alignment(0.0, 1.0 - paddingAlignmentAdjustment) : Alignment(0.0, -1.0 + paddingAlignmentAdjustment);
-    final AlignmentGeometry hiddenAlignment = isBottom ? Alignment(0.0, 1.0 + alignmentAdjustment) : Alignment(0.0,- 1.0 - alignmentAdjustment);
-    
+    final AlignmentGeometry visibleAlignment = isBottom
+        ? Alignment(0.0, 1.0 - paddingAlignmentAdjustment)
+        : Alignment(0.0, -1.0 + paddingAlignmentAdjustment);
+    final AlignmentGeometry hiddenAlignment = isBottom
+        ? Alignment(0.0, 1.0 + alignmentAdjustment)
+        : Alignment(0.0, -1.0 - alignmentAdjustment);
+
     return Positioned(
       child: AnimatedAlign(
         alignment: _snackbarVisible ? visibleAlignment : hiddenAlignment,
@@ -111,7 +110,9 @@ class LuckyToastMessengerState extends State<LuckyToastMessenger> {
               onVerticalDragEnd: (details) {
                 final double vy = details.velocity.pixelsPerSecond.dy;
                 const minV = 600;
-                if ((vy < -minV && _alignment == LuckyToastAlignmentEnum.Top) || (vy > minV && _alignment == LuckyToastAlignmentEnum.Bottom)) {
+                if ((vy < -minV && _alignment == LuckyToastAlignmentEnum.top) ||
+                    (vy > minV &&
+                        _alignment == LuckyToastAlignmentEnum.bottom)) {
                   // Close toast on swipe up or down, based on alignment.
                   setState(() {
                     _snackbarVisible = false;
@@ -122,26 +123,26 @@ class LuckyToastMessengerState extends State<LuckyToastMessenger> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: context.luckyColors.surface,
-                  border: Border.all(
-                    color: context.luckyColors.n100,
-                  ),
+                  border: Border.all(color: context.luckyColors.n100),
                   borderRadius: radius2xl,
                 ),
                 margin: const EdgeInsets.symmetric(horizontal: spaceSm),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: spaceMd, vertical: spaceSm),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: spaceMd,
+                    vertical: spaceSm,
+                  ),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      if(_title != null) LuckyHeading(
-                        text: _title!,
-                        fontSize: textLg,
-                        lineHeight: lineHeightLg,
-                      ),
-                      LuckyBody(
-                        text: _text,
-                      )
+                      if (_title != null)
+                        LuckyHeading(
+                          text: _title!,
+                          fontSize: textLg,
+                          lineHeight: lineHeightLg,
+                        ),
+                      LuckyBody(text: _text),
                     ],
                   ),
                 ),
@@ -153,7 +154,13 @@ class LuckyToastMessengerState extends State<LuckyToastMessenger> {
     );
   }
 
-  void _showToast(String text, String? title, VoidCallback? onTap, Duration duration, LuckyToastAlignmentEnum alignment) {
+  void _showToast(
+    String text,
+    String? title,
+    VoidCallback? onTap,
+    Duration duration,
+    LuckyToastAlignmentEnum alignment,
+  ) {
     setState(() {
       _snackbarVisible = true;
       _text = text;
@@ -162,7 +169,7 @@ class LuckyToastMessengerState extends State<LuckyToastMessenger> {
       _alignment = alignment;
     });
     Future.delayed(duration, () {
-      if(mounted) {
+      if (mounted) {
         setState(() {
           _snackbarVisible = false;
         });

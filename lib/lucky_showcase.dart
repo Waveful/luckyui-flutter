@@ -220,29 +220,29 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                         LuckyButton(
                           onTap: () {},
                           text: "Primary",
-                          style: LuckyButtonStyleEnum.Primary,
+                          style: LuckyButtonStyleEnum.primary,
                         ),
                         LuckyButton(
                           onTap: () {},
                           text: "Primary Disabled",
-                          style: LuckyButtonStyleEnum.Primary,
+                          style: LuckyButtonStyleEnum.primary,
                           disabled: true,
                         ),
                         LuckyButton(
                           onTap: () {},
                           text: "Primary Alternative",
-                          style: LuckyButtonStyleEnum.PrimaryAlternative,
+                          style: LuckyButtonStyleEnum.primaryAlternative,
                         ),
                         LuckyButton(
                           onTap: () {},
                           text: "Primary Alternative Disabled",
-                          style: LuckyButtonStyleEnum.PrimaryAlternative,
+                          style: LuckyButtonStyleEnum.primaryAlternative,
                           disabled: true,
                         ),
                         LuckyButton(
                           onTap: () {},
                           text: "Secondary",
-                          style: LuckyButtonStyleEnum.Secondary,
+                          style: LuckyButtonStyleEnum.secondary,
                         ),
                       ],
                     ),
@@ -413,14 +413,14 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                           description:
                               "Enter your username, so people can find you on Waveful!",
                           hintText: "@username",
-                          style: LuckyFormStyleEnum.Default,
+                          style: LuckyFormStyleEnum.standard,
                         ),
                         SizedBox(),
                         LuckyForm(
                           heading: "Bio",
                           description: "Tell your followers who you are!",
                           hintText: "I am mother from Atlanta...",
-                          style: LuckyFormStyleEnum.Big,
+                          style: LuckyFormStyleEnum.big,
                         ),
                       ],
                     ),
@@ -628,7 +628,7 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                                   LuckyToastMessenger.showToast(
                                     "You have just purchased 100 Superlikes, now you can spend them on your favorite Creators.",
                                     title: "Success!",
-                                    type: LuckyToastTypeEnum.Success,
+                                    type: LuckyToastTypeEnum.success,
                                   );
                                 },
                               ),
@@ -641,10 +641,10 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                                 onTap: () {
                                   LuckyToastMessenger.showToast(
                                     "There was an error in loading your profile.",
-                                    type: LuckyToastTypeEnum.Error,
+                                    type: LuckyToastTypeEnum.error,
                                   );
                                 },
-                                style: LuckyButtonStyleEnum.Secondary,
+                                style: LuckyButtonStyleEnum.secondary,
                               ),
                             ),
                           ],
@@ -654,12 +654,12 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                           onTap: () {
                             LuckyToastMessenger.showToast(
                               "@username left a Superlike on your post!",
-                              type: LuckyToastTypeEnum.Success,
-                              alignment: LuckyToastAlignmentEnum.Top,
+                              type: LuckyToastTypeEnum.success,
+                              alignment: LuckyToastAlignmentEnum.top,
                               onTap: () {},
                             );
                           },
-                          style: LuckyButtonStyleEnum.PrimaryAlternative,
+                          style: LuckyButtonStyleEnum.primaryAlternative,
                         ),
                       ],
                     ),
@@ -722,7 +722,7 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                         ),
                         LuckyButton(
                           text: "Show Confirmation Modal",
-                          style: LuckyButtonStyleEnum.PrimaryAlternative,
+                          style: LuckyButtonStyleEnum.primaryAlternative,
                           onTap: () {
                             LuckyModal.showConfirmation(
                               context: context,
@@ -824,7 +824,7 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                             ),
                             LuckyButton(
                               text: "With Title",
-                              style: LuckyButtonStyleEnum.PrimaryAlternative,
+                              style: LuckyButtonStyleEnum.primaryAlternative,
                               onTap: () {
                                 Navigator.push(
                                   context,
@@ -841,7 +841,7 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                             ),
                             LuckyButton(
                               text: "With Actions",
-                              style: LuckyButtonStyleEnum.PrimaryAlternative,
+                              style: LuckyButtonStyleEnum.primaryAlternative,
                               onTap: () {
                                 Navigator.push(
                                   context,

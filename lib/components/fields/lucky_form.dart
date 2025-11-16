@@ -4,13 +4,9 @@ import 'package:luckyui/components/typography/lucky_heading.dart';
 import 'package:luckyui/theme/lucky_colors.dart';
 import 'package:luckyui/theme/lucky_tokens.dart';
 
-enum LuckyFormStyleEnum {
-  Default,
-  Big,
-}
+enum LuckyFormStyleEnum { standard, big }
 
 class LuckyForm extends StatefulWidget {
-
   final String heading;
   final String description;
   final String hintText;
@@ -20,7 +16,7 @@ class LuckyForm extends StatefulWidget {
     this.heading = "",
     this.description = "",
     this.hintText = "",
-    this.style = LuckyFormStyleEnum.Default,
+    this.style = LuckyFormStyleEnum.standard,
   });
 
   @override
@@ -28,25 +24,23 @@ class LuckyForm extends StatefulWidget {
 }
 
 class _LuckyFormState extends State<LuckyForm> {
-
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if(widget.heading.isNotEmpty) LuckyHeading(
-          text: widget.heading,
-          fontSize: textLg,
-          lineHeight: lineHeightLg,
-        ),
-        if(widget.description.isNotEmpty) LuckyBody(
-          text: widget.description,
-        ),
+        if (widget.heading.isNotEmpty)
+          LuckyHeading(
+            text: widget.heading,
+            fontSize: textLg,
+            lineHeight: lineHeightLg,
+          ),
+        if (widget.description.isNotEmpty) LuckyBody(text: widget.description),
         SizedBox(
           width: double.infinity,
-          height: widget.style == LuckyFormStyleEnum.Big ? 126 : 50,
+          height: widget.style == LuckyFormStyleEnum.big ? 126 : 50,
           child: TextField(
-            maxLines: widget.style == LuckyFormStyleEnum.Big ? null : 1,
+            maxLines: widget.style == LuckyFormStyleEnum.big ? null : 1,
             style: TextStyle(
               color: context.luckyColors.onSurface,
               fontSize: textBase,
