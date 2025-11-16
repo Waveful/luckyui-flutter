@@ -12,7 +12,6 @@ typedef LuckyIconData = List<List<dynamic>>;
 
 /// A widget that displays an icon.
 class LuckyIcon extends StatelessWidget {
-
   /// The icon to display.
   final LuckyIconData? icon;
 
@@ -36,15 +35,17 @@ class LuckyIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return icon != null ? HugeIcon(
-      icon: icon!,
-      color: color ?? context.luckyColors.onSurface,
-      size: size,
-      strokeWidth: 2.0,
-    ) : Icon(
-      nativeIcon,
-      color: color ?? context.luckyColors.onSurface,
-      size: size,
-    );
+    return icon != null
+        ? HugeIcon(
+            icon: icon!,
+            color: color ?? context.luckyColors.onSurface,
+            size: size,
+            strokeWidth: 2.0,
+          )
+        : Icon(
+            nativeIcon,
+            color: color ?? context.luckyColors.onSurface,
+            size: size,
+          );
   }
 }

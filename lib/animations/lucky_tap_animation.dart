@@ -3,7 +3,6 @@ import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// A widget that animates the scale of a child widget when tapped.
 class LuckyTapAnimation extends StatefulWidget {
-
   /// The callback to be called when the widget is tapped.
   final VoidCallback? onTap;
 
@@ -30,7 +29,6 @@ class LuckyTapAnimation extends StatefulWidget {
 }
 
 class _LuckyTapAnimationState extends State<LuckyTapAnimation> {
-
   static const kDefaultScale = 1.0;
   static const kPressedScale = 0.975;
 
@@ -44,10 +42,10 @@ class _LuckyTapAnimationState extends State<LuckyTapAnimation> {
       curve: Curves.easeIn,
       child: Listener(
         onPointerDown: (_) {
-          if(widget.onTap == null) {
+          if (widget.onTap == null) {
             return;
           }
-          if(!mounted) {
+          if (!mounted) {
             return;
           }
 
@@ -55,10 +53,10 @@ class _LuckyTapAnimationState extends State<LuckyTapAnimation> {
           widget.animationNotifier?.value = true;
         },
         onPointerCancel: (_) {
-          if(widget.onTap == null) {
+          if (widget.onTap == null) {
             return;
           }
-          if(!mounted) {
+          if (!mounted) {
             return;
           }
 
@@ -66,10 +64,10 @@ class _LuckyTapAnimationState extends State<LuckyTapAnimation> {
           widget.animationNotifier?.value = false;
         },
         onPointerUp: (_) {
-          if(widget.onTap == null) {
+          if (widget.onTap == null) {
             return;
           }
-          if(!mounted) {
+          if (!mounted) {
             return;
           }
 

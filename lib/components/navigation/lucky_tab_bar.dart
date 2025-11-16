@@ -7,7 +7,6 @@ import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// A widget that displays a tab bar.
 class LuckyTabBar extends StatefulWidget {
-
   /// The controller that manages the selected tab.
   final TabController tabController;
 
@@ -34,7 +33,6 @@ class LuckyTabBar extends StatefulWidget {
 }
 
 class _LuckyTabBarState extends State<LuckyTabBar> {
-
   int get index => widget.tabController.index;
 
   @override
@@ -52,36 +50,39 @@ class _LuckyTabBarState extends State<LuckyTabBar> {
       isScrollable: widget.isScrollable,
       tabAlignment: widget.isScrollable ? TabAlignment.start : null,
       indicator: UnderlineTabIndicator(
-        borderSide: BorderSide(
-          color: context.luckyColors.onSurface,
-          width: 2,
-        ),
+        borderSide: BorderSide(color: context.luckyColors.onSurface, width: 2),
         insets: widget.insets,
       ),
       overlayColor: WidgetStateColor.resolveWith((_) => Colors.transparent),
       tabs: widget.tabs.map((entry) {
         final int entryIndex = widget.tabs.indexOf(entry);
         final bool isSelected = index == entryIndex;
-        
+
         final Widget? iconWidget = entry.icon != null
-          ? LuckyIcon(
-              icon: entry.icon,
-              color: isSelected ? context.luckyColors.onSurface : context.luckyColors.n400,
-            )
-          : null;
+            ? LuckyIcon(
+                icon: entry.icon,
+                color: isSelected
+                    ? context.luckyColors.onSurface
+                    : context.luckyColors.n400,
+              )
+            : null;
 
         final Widget? labelWidget = entry.label != null
-          ? LuckyBody(
-              text: entry.label!,
-              fontWeight: isSelected ? semiBoldFontWeight : normalFontWeight,
-              color: isSelected ? context.luckyColors.onSurface : context.luckyColors.n400,
-              textAlign: TextAlign.center,
-            )
-          : null;
-        
+            ? LuckyBody(
+                text: entry.label!,
+                fontWeight: isSelected ? semiBoldFontWeight : normalFontWeight,
+                color: isSelected
+                    ? context.luckyColors.onSurface
+                    : context.luckyColors.n400,
+                textAlign: TextAlign.center,
+              )
+            : null;
+
         final bool includePadding = widget.isScrollable;
         return Padding(
-          padding: includePadding ? const EdgeInsets.symmetric(horizontal: spaceLg) : EdgeInsets.zero,
+          padding: includePadding
+              ? const EdgeInsets.symmetric(horizontal: spaceLg)
+              : EdgeInsets.zero,
           child: Tab(
             icon: Stack(
               clipBehavior: Clip.none,
@@ -91,25 +92,24 @@ class _LuckyTabBarState extends State<LuckyTabBar> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    if(iconWidget != null) iconWidget,
-                    if(iconWidget != null && labelWidget != null) const SizedBox(width: spaceSm),
-                    if(labelWidget != null) labelWidget,
-                    if(entry.counter != 0) const SizedBox(width: spaceSm),
-                    if(entry.counter != 0) Padding(
-                      padding: const EdgeInsets.only(top: spaceXs),
-                      child: LuckyRedDot(
-                        counter: entry.counter,
+                    if (iconWidget != null) iconWidget,
+                    if (iconWidget != null && labelWidget != null)
+                      const SizedBox(width: spaceSm),
+                    if (labelWidget != null) labelWidget,
+                    if (entry.counter != 0) const SizedBox(width: spaceSm),
+                    if (entry.counter != 0)
+                      Padding(
+                        padding: const EdgeInsets.only(top: spaceXs),
+                        child: LuckyRedDot(counter: entry.counter),
                       ),
-                    ),
                   ],
                 ),
-                if(entry.showRedDot && entry.counter == 0) Positioned(
-                  top: -spaceXs,
-                  right: entry.label != null ? -spaceSm : -spaceXs,
-                  child: LuckyRedDot(
-                    counter: entry.counter,
+                if (entry.showRedDot && entry.counter == 0)
+                  Positioned(
+                    top: -spaceXs,
+                    right: entry.label != null ? -spaceSm : -spaceXs,
+                    child: LuckyRedDot(counter: entry.counter),
                   ),
-                ),
               ],
             ),
           ),
@@ -121,7 +121,6 @@ class _LuckyTabBarState extends State<LuckyTabBar> {
 
 /// A data class that represents a tab.
 class LuckyTabData {
-  
   /// The icon of the tab.
   final LuckyIconData? icon;
 

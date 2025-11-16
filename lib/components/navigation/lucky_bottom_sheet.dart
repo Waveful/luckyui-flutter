@@ -4,27 +4,28 @@ import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// A widget that displays a bottom sheet.
 class LuckyBottomSheet extends StatelessWidget {
-
   /// Shows a bottom sheet.
   static Future<T?> show<T>({
     required BuildContext context,
     required List<Widget> children,
-    EdgeInsetsGeometry padding = const EdgeInsets.symmetric(horizontal: spaceMd),
+    EdgeInsetsGeometry padding = const EdgeInsets.symmetric(
+      horizontal: spaceMd,
+    ),
   }) {
     return showModalBottomSheet<T?>(
       context: context,
       useSafeArea: true,
       scrollControlDisabledMaxHeightRatio: 1.0,
       shape: RoundedRectangleBorder(
-        borderRadius: radius2xl.copyWith(bottomLeft: Radius.zero, bottomRight: Radius.zero),
+        borderRadius: radius2xl.copyWith(
+          bottomLeft: Radius.zero,
+          bottomRight: Radius.zero,
+        ),
       ),
       backgroundColor: context.luckyColors.surfaceTint,
       barrierColor: black.withAlpha(200),
       builder: (context) {
-        return LuckyBottomSheet(
-          padding: padding,
-          children: children,
-        );
+        return LuckyBottomSheet(padding: padding, children: children);
       },
     );
   }

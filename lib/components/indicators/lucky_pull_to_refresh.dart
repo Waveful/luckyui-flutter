@@ -3,7 +3,6 @@ import 'package:luckyui/luckyui.dart';
 
 /// A widget that displays a pull to refresh indicator.
 class LuckyPullToRefresh extends StatelessWidget {
-
   /// The child widget to display.
   final Widget child;
 
@@ -24,7 +23,8 @@ class LuckyPullToRefresh extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      displacement: 20.0 + (safeArea ? MediaQuery.of(context).padding.top : 0.0),
+      displacement:
+          20.0 + (safeArea ? MediaQuery.of(context).padding.top : 0.0),
       elevation: 0.0,
       backgroundColor: Colors.transparent,
       color: context.luckyColors.onSurface,

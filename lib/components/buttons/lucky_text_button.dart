@@ -5,7 +5,6 @@ import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// A widget that displays a text button.
 class LuckyTextButton extends StatelessWidget {
-  
   /// The text to display in the button.
   final String text;
 

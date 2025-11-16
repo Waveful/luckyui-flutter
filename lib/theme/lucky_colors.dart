@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 /// A class that represents the colors of LuckyUI.
 @immutable
 class LuckyColors extends ThemeExtension<LuckyColors> {
-  
   /// Creates a new [LuckyColors] class.
   const LuckyColors({
     required this.surface,
@@ -22,26 +21,37 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
 
   /// The surface color.
   final Color surface;
+
   /// The n100 color.
   final Color n100;
+
   /// The n200 color.
   final Color n200;
+
   /// The n300 color.
   final Color n300;
+
   /// The n400 color.
   final Color n400;
+
   /// The n500 color.
   final Color n500;
+
   /// The n600 color.
   final Color n600;
+
   /// The n700 color.
   final Color n700;
+
   /// The n800 color.
   final Color n800;
+
   /// The n900 color.
   final Color n900;
+
   /// The onSurface color.
   final Color onSurface;
+
   /// The surfaceTint color.
   final Color surfaceTint;
 
@@ -130,9 +140,9 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
 
 /// An extension on [BuildContext] that provides a convenient way to access the [LuckyColors] theme extension.
 extension LuckyColorsExtention on BuildContext {
-
   /// The [LuckyColors] theme extension.
-  LuckyColors get luckyColors => Theme.of(this).extension<LuckyColors>() ?? LuckyColors.light;
+  LuckyColors get luckyColors =>
+      Theme.of(this).extension<LuckyColors>() ?? LuckyColors.light;
 
   /// The [ColorScheme] of the current theme.
   ColorScheme get scheme => Theme.of(this).colorScheme;

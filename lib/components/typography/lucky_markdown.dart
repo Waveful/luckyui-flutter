@@ -4,7 +4,6 @@ import 'package:markdown_widget/markdown_widget.dart';
 
 /// A widget that displays a markdown text.
 class LuckyMarkdown extends StatelessWidget {
-
   /// The text to display.
   final String text;
 
@@ -12,11 +11,7 @@ class LuckyMarkdown extends StatelessWidget {
   final Function(String url)? onLinkTap;
 
   /// Creates a new [LuckyMarkdown] widget.
-  const LuckyMarkdown({
-    super.key,
-    required this.text,
-    this.onLinkTap,
-  });
+  const LuckyMarkdown({super.key, required this.text, this.onLinkTap});
 
   @override
   Widget build(BuildContext context) {

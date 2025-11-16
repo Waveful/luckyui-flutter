@@ -16,7 +16,7 @@ class LuckyNavBarItemData {
 
   /// The text of the navbar item.
   final String? text;
-  
+
   /// The red dot counter of the navbar item.
   final int? counter;
 
@@ -205,9 +205,7 @@ class LuckyNavBarItem extends StatelessWidget {
                     Positioned(
                       top: -spaceXs,
                       right: -spaceXs,
-                      child: LuckyRedDot(
-                        counter: counter!,
-                      ),
+                      child: LuckyRedDot(counter: counter!),
                     ),
                 ],
               ),

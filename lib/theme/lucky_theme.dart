@@ -5,30 +5,33 @@ import 'lucky_tokens.dart';
 
 /// A class that represents the theme of LuckyUI.
 class LuckyTheme {
-  
   /// The primary color.
   static const Color primaryColor = blue;
+
   /// The secondary color.
   static const Color secondaryColor = secondaryBlue;
+
   /// The accent color.
   static const Color accentColor = accentBlue;
+
   /// The error color.
   static const Color errorColor = red;
 
   /// The light theme.
   static ThemeData lightTheme() {
-    final ColorScheme lightScheme = ColorScheme.fromSeed(
-      seedColor: primaryColor,
-      brightness: Brightness.light,
-    ).copyWith(
-      primary: primaryColor,
-      secondary: secondaryColor,
-      error: errorColor,
-      surface: white,
-      onSurface: black,
-      surfaceContainerHighest: gray200,
-      onSurfaceVariant: gray600,
-    );
+    final ColorScheme lightScheme =
+        ColorScheme.fromSeed(
+          seedColor: primaryColor,
+          brightness: Brightness.light,
+        ).copyWith(
+          primary: primaryColor,
+          secondary: secondaryColor,
+          error: errorColor,
+          surface: white,
+          onSurface: black,
+          surfaceContainerHighest: gray200,
+          onSurfaceVariant: gray600,
+        );
 
     return ThemeData(
       useMaterial3: false,
@@ -65,18 +68,19 @@ class LuckyTheme {
 
   /// The dark theme.
   static ThemeData darkTheme() {
-    final ColorScheme darkScheme = ColorScheme.fromSeed(
-      seedColor: primaryColor,
-      brightness: Brightness.dark,
-    ).copyWith(
-      primary: primaryColor,
-      secondary: secondaryColor,
-      error: errorColor,
-      surface: black,
-      onSurface: white,
-      surfaceContainerHighest: gray800,
-      onSurfaceVariant: gray400,
-    );
+    final ColorScheme darkScheme =
+        ColorScheme.fromSeed(
+          seedColor: primaryColor,
+          brightness: Brightness.dark,
+        ).copyWith(
+          primary: primaryColor,
+          secondary: secondaryColor,
+          error: errorColor,
+          surface: black,
+          onSurface: white,
+          surfaceContainerHighest: gray800,
+          onSurfaceVariant: gray400,
+        );
 
     return ThemeData(
       useMaterial3: false,
@@ -111,9 +115,10 @@ class LuckyTheme {
     );
   }
 
-  static const TextSelectionThemeData _textSelectionTheme = TextSelectionThemeData(
-    selectionColor: blue300,
-    selectionHandleColor: primaryColor,
-    cursorColor: primaryColor,
-  );
+  static const TextSelectionThemeData _textSelectionTheme =
+      TextSelectionThemeData(
+        selectionColor: blue300,
+        selectionHandleColor: primaryColor,
+        cursorColor: primaryColor,
+      );
 }

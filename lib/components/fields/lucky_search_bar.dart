@@ -5,7 +5,6 @@ import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// A widget that displays a search bar.
 class LuckySearchBar extends StatelessWidget {
-
   /// The controller of the search bar.
   final TextEditingController controller;
 

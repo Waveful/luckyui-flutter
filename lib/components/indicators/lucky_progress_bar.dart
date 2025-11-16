@@ -3,7 +3,6 @@ import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// A widget that displays a progress bar.
 class LuckyProgressBar extends StatelessWidget {
-
   /// The current value of the progress bar.
   final int current;
 
@@ -37,7 +36,6 @@ class LuckyProgressBar extends StatelessWidget {
   static const double _halfProgress = 0.5;
   static const double _virtualProgressDelta = 0.075;
 
-
   @override
   Widget build(BuildContext context) {
     const Color noProgressTextColor = black;
@@ -47,8 +45,9 @@ class LuckyProgressBar extends StatelessWidget {
       builder: (BuildContext context, BoxConstraints constraints) {
         Color textColor;
         double virtualProgress = progress;
-        if(progress <= _halfProgress + _virtualProgressDelta && progress >= _halfProgress - _virtualProgressDelta) {
-          if(progress < _halfProgress) {
+        if (progress <= _halfProgress + _virtualProgressDelta &&
+            progress >= _halfProgress - _virtualProgressDelta) {
+          if (progress < _halfProgress) {
             textColor = noProgressTextColor;
             virtualProgress = _halfProgress - _virtualProgressDelta;
           } else {
@@ -56,7 +55,7 @@ class LuckyProgressBar extends StatelessWidget {
             virtualProgress = _halfProgress + _virtualProgressDelta;
           }
         } else {
-          if(progress < _halfProgress) {
+          if (progress < _halfProgress) {
             textColor = noProgressTextColor;
           } else {
             textColor = progressTextColor;
@@ -83,20 +82,21 @@ class LuckyProgressBar extends StatelessWidget {
                 borderRadius: showText ? radiusXl : radiusSm,
               ),
             ),
-            if(showText) Center(
-              child: Text(
-                '$currentText/$totalText',
-                style: TextStyle(
-                  color: textColor,
-                  fontSize: textXs,
-                  fontWeight: boldFontWeight,
-                  height: lineHeightXs,
+            if (showText)
+              Center(
+                child: Text(
+                  '$currentText/$totalText',
+                  style: TextStyle(
+                    color: textColor,
+                    fontSize: textXs,
+                    fontWeight: boldFontWeight,
+                    height: lineHeightXs,
+                  ),
                 ),
               ),
-            ),
           ],
         );
-      }
+      },
     );
   }
 }

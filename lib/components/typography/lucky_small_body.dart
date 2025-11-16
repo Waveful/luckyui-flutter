@@ -4,7 +4,6 @@ import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// A widget that displays a small body text.
 class LuckySmallBody extends StatelessWidget {
-
   /// The text to display.
   final String text;
 

@@ -8,7 +8,7 @@ import 'package:luckyui/theme/lucky_tokens.dart';
 enum LuckyFormStyleEnum {
   /// [standard] - A standard form style.
   standard,
-  
+
   /// [big] - A big form style, larger in height and no max lines.
   big,
 }

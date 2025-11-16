@@ -6,7 +6,6 @@ import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// A widget that displays an icon button.
 class LuckyIconButton extends StatelessWidget {
-
   /// The icon to display in the button.
   final LuckyIconData? icon;
 

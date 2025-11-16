@@ -7,7 +7,6 @@ import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// A data class that represents a filter.
 class LuckyFilterData {
-  
   /// The text of the filter.
   final String text;
 
@@ -15,15 +14,11 @@ class LuckyFilterData {
   final LuckyIconData? icon;
 
   /// Creates a new [LuckyFilterData] data class.
-  const LuckyFilterData({
-    required this.text,
-    this.icon,
-  });
+  const LuckyFilterData({required this.text, this.icon});
 }
 
 /// A controller that manages the selected filter.
 class LuckyFiltersController extends ChangeNotifier {
-
   int _selectedIndex = 0;
 
   /// The index of the selected filter.
@@ -38,7 +33,6 @@ class LuckyFiltersController extends ChangeNotifier {
 
 /// A widget that displays a list of filters.
 class LuckyFilters extends StatefulWidget {
-
   /// The controller that manages the selected filter.
   final LuckyFiltersController controller;
 
@@ -61,7 +55,6 @@ class LuckyFilters extends StatefulWidget {
 }
 
 class _LuckyFiltersState extends State<LuckyFilters> {
-
   int get selectedIndex => widget.controller.selectedIndex;
 
   @override
@@ -71,25 +64,23 @@ class _LuckyFiltersState extends State<LuckyFilters> {
       padding: EdgeInsets.symmetric(horizontal: widget.spacing),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        children: List.generate(
-          widget.filters.length,
-          (index) {
-            final LuckyFilterData filter = widget.filters[index];
-            return Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                LuckyFilter(
-                  selected: index == selectedIndex,
-                  icon: filter.icon,
-                  text: filter.text,
-                  onTap: () => setState(() => widget.controller.selectFilter(index)),
-                ),
-                if(index < widget.filters.length - 1)
-                  const SizedBox(width: spaceSm),
-              ],
-            );
-          },
-        ),
+        children: List.generate(widget.filters.length, (index) {
+          final LuckyFilterData filter = widget.filters[index];
+          return Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              LuckyFilter(
+                selected: index == selectedIndex,
+                icon: filter.icon,
+                text: filter.text,
+                onTap: () =>
+                    setState(() => widget.controller.selectFilter(index)),
+              ),
+              if (index < widget.filters.length - 1)
+                const SizedBox(width: spaceSm),
+            ],
+          );
+        }),
       ),
     );
   }
@@ -97,7 +88,6 @@ class _LuckyFiltersState extends State<LuckyFilters> {
 
 /// A widget that displays a filter with an icon and a text.
 class LuckyFilter extends StatelessWidget {
-
   /// Whether the filter is selected.
   final bool selected;
 
@@ -128,26 +118,38 @@ class LuckyFilter extends StatelessWidget {
         duration: fastDuration,
         curve: Curves.easeIn,
         decoration: BoxDecoration(
-          color: selected ? context.luckyColors.onSurface : context.luckyColors.surface,
+          color: selected
+              ? context.luckyColors.onSurface
+              : context.luckyColors.surface,
           borderRadius: radius2xl,
           border: Border.all(
-            color: selected ? context.luckyColors.onSurface : context.luckyColors.n100,
+            color: selected
+                ? context.luckyColors.onSurface
+                : context.luckyColors.n100,
           ),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: spaceSm, vertical: spaceXs),
+        padding: const EdgeInsets.symmetric(
+          horizontal: spaceSm,
+          vertical: spaceXs,
+        ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            if(icon != null) LuckyIcon(
-              icon: icon,
-              color: selected ? context.luckyColors.surface : context.luckyColors.n700,
-              size: iconSm,
-            ),
-            if(icon != null) const SizedBox(width: spaceXs),
+            if (icon != null)
+              LuckyIcon(
+                icon: icon,
+                color: selected
+                    ? context.luckyColors.surface
+                    : context.luckyColors.n700,
+                size: iconSm,
+              ),
+            if (icon != null) const SizedBox(width: spaceXs),
             LuckyBody(
               text: text,
-              color: selected ? context.luckyColors.surface : context.luckyColors.n700,
+              color: selected
+                  ? context.luckyColors.surface
+                  : context.luckyColors.n700,
               fontWeight: semiBoldFontWeight,
               lineHeight: lineHeightXs,
             ),

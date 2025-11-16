@@ -5,7 +5,6 @@ import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// A widget that displays a switch.
 class LuckySwitch extends StatefulWidget {
-
   /// The initial value of the switch.
   final bool initialValue;
 
@@ -24,7 +23,6 @@ class LuckySwitch extends StatefulWidget {
 }
 
 class _LuckySwitchState extends State<LuckySwitch> {
-
   bool _value = false;
 
   @override

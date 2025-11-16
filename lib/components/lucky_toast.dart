@@ -106,7 +106,9 @@ class LuckyToastMessengerState extends State<LuckyToastMessenger> {
   @override
   void initState() {
     super.initState();
-    _alignment = widget.type == "toast" ? LuckyToastAlignmentEnum.bottom : LuckyToastAlignmentEnum.top;
+    _alignment = widget.type == "toast"
+        ? LuckyToastAlignmentEnum.bottom
+        : LuckyToastAlignmentEnum.top;
     LuckyToastMessenger._states[widget.type] = this;
   }
 
