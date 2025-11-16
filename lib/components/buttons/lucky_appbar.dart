@@ -5,9 +5,9 @@ import 'package:luckyui/components/typography/lucky_heading.dart';
 import 'package:luckyui/theme/lucky_colors.dart';
 import 'package:luckyui/theme/lucky_tokens.dart';
 
-/// A widget that displays a toolbar with actions.
-class LuckyActionsAppBar extends StatelessWidget implements PreferredSizeWidget {
-
+/// A widget that displays a toolbar with primary and negative actions.
+class LuckyActionsAppBar extends StatelessWidget
+    implements PreferredSizeWidget {
   /// The text for the negative action.
   final String negativeText;
 
@@ -32,7 +32,7 @@ class LuckyActionsAppBar extends StatelessWidget implements PreferredSizeWidget 
     required this.primaryText,
     this.onPrimaryAction,
   });
-  
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -67,9 +67,11 @@ class LuckyActionsAppBar extends StatelessWidget implements PreferredSizeWidget 
 
 /// A widget that displays a toolbar with a title.
 class LuckyAppBar extends StatelessWidget implements PreferredSizeWidget {
-
   /// The title to display in the app bar.
   final String? title;
+
+  /// The widget to display in the title.
+  final Widget? titleWidget;
 
   /// Whether to center the title.
   final bool centerTitle;
@@ -77,31 +79,53 @@ class LuckyAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// The background color of the app bar.
   final Color? backgroundColor;
 
+  /// The actions to display in the app bar.
+  final List<Widget>? actions;
+
+  /// The leading widget to display in the app bar.
+  final Widget? leading;
+
+  /// The color of the leading widget.
+  final Color? leadingColor;
+
   /// Creates a new [LuckyAppBar] widget.
   const LuckyAppBar({
     super.key,
     this.title,
+    this.titleWidget,
     this.centerTitle = true,
     this.backgroundColor,
+    this.actions,
+    this.leading,
+    this.leadingColor,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: LuckyIconButton(
-        nativeIcon: Icons.arrow_back_ios_rounded,
-        onTap: () => Navigator.maybePop(context),
-        size: iconMd,
-      ),
+      leading:
+          leading ??
+          LuckyIconButton(
+            nativeIcon: Icons.arrow_back_ios_rounded,
+            onTap: () => Navigator.maybePop(context),
+            size: iconMd,
+            color: leadingColor ?? context.luckyColors.onSurface,
+          ),
       leadingWidth: iconMd + spaceLg,
       centerTitle: centerTitle,
       elevation: 0,
+      actions: actions,
+      actionsPadding: const EdgeInsets.only(right: spaceSm),
       backgroundColor: backgroundColor ?? context.luckyColors.surface,
-      title: title != null ? LuckyHeading(
-        text: title!,
-        fontSize: textLg,
-        lineHeight: lineHeightXs,
-      ) : null,
+      title:
+          titleWidget ??
+          (title != null
+              ? LuckyHeading(
+                  text: title!,
+                  fontSize: textLg,
+                  lineHeight: lineHeightXs,
+                )
+              : null),
     );
   }
 

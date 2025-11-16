@@ -4,15 +4,15 @@ import 'package:luckyui/theme/lucky_colors.dart';
 import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// An enumeration of button styles.
-enum LuckyButtonStyleEnum { 
+enum LuckyButtonStyleEnum {
   /// [primary] - A primary button with a blue background and white text.
   primary,
-  
+
   /// [primaryAlternative] - A primary alternative button with a onSurface background and surface text.
   primaryAlternative,
-  
+
   /// [secondary] - A secondary button with a surface background, onSurface text and a border.
-  secondary
+  secondary,
 }
 
 /// A widget that displays a button with a text.
@@ -20,11 +20,17 @@ class LuckyButton extends StatelessWidget {
   /// The text to display in the button.
   final String text;
 
+  /// The size of the text.
+  final double textSize;
+
   /// The callback to be called when the button is tapped.
   final VoidCallback onTap;
 
   /// Whether the button is disabled.
   final bool disabled;
+
+  /// Whether the button takes the full width of the parent.
+  final bool expanded;
 
   /// The style of the button.
   final LuckyButtonStyleEnum style;
@@ -33,8 +39,10 @@ class LuckyButton extends StatelessWidget {
   const LuckyButton({
     super.key,
     required this.text,
+    this.textSize = textBase,
     required this.onTap,
     this.disabled = false,
+    this.expanded = true,
     this.style = LuckyButtonStyleEnum.primary,
   });
 
@@ -59,8 +67,11 @@ class LuckyButton extends StatelessWidget {
       child: AnimatedContainer(
         duration: fastDuration,
         curve: Curves.easeIn,
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: spaceMd),
+        width: expanded ? double.infinity : null,
+        padding: EdgeInsets.symmetric(
+          horizontal: spaceMd,
+          vertical: expanded ? spaceMd : spaceSm,
+        ),
         decoration: BoxDecoration(
           color: disabled ? disabledColor : enabledColor,
           borderRadius: radius4xl,
@@ -73,7 +84,7 @@ class LuckyButton extends StatelessWidget {
           text,
           style: TextStyle(
             color: textColor,
-            fontSize: textBase,
+            fontSize: textSize,
             fontWeight: semiBoldFontWeight,
           ),
         ),

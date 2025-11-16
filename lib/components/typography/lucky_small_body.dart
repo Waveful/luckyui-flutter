@@ -14,12 +14,24 @@ class LuckySmallBody extends StatelessWidget {
   /// The font weight of the text.
   final FontWeight fontWeight;
 
+  /// The text alignment of the text.
+  final TextAlign textAlign;
+
+  /// The maximum number of lines to display.
+  final int? maxLines;
+
+  /// The overflow of the text.
+  final TextOverflow? overflow;
+
   /// Creates a new [LuckySmallBody] widget.
   const LuckySmallBody({
     super.key,
     required this.text,
     this.color,
     this.fontWeight = normalFontWeight,
+    this.textAlign = TextAlign.start,
+    this.maxLines,
+    this.overflow,
   });
 
   @override
@@ -32,6 +44,9 @@ class LuckySmallBody extends StatelessWidget {
         fontWeight: fontWeight,
         height: lineHeightXs,
       ),
+      textAlign: textAlign,
+      maxLines: maxLines,
+      overflow: overflow,
     );
   }
 }

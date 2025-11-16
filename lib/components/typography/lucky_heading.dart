@@ -20,6 +20,9 @@ class LuckyHeading extends StatelessWidget {
   /// The font weight of the text.
   final FontWeight fontWeight;
 
+  /// The text alignment of the text.
+  final TextAlign textAlign;
+
   /// Creates a new [LuckyHeading] widget.
   const LuckyHeading({
     super.key,
@@ -28,6 +31,7 @@ class LuckyHeading extends StatelessWidget {
     this.fontSize = text2xl,
     this.lineHeight = lineHeight2xl,
     this.fontWeight = extraBoldFontWeight,
+    this.textAlign = TextAlign.start,
   });
 
   @override
@@ -40,6 +44,7 @@ class LuckyHeading extends StatelessWidget {
         fontWeight: fontWeight,
         height: lineHeight,
       ),
+      textAlign: textAlign,
     );
   }
 }

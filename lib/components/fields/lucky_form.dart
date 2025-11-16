@@ -15,6 +15,9 @@ enum LuckyFormStyleEnum {
 
 /// A widget that displays a form.
 class LuckyForm extends StatefulWidget {
+  /// The controller of the form.
+  final TextEditingController controller;
+
   /// The heading to display in the form.
   final String heading;
 
@@ -30,6 +33,7 @@ class LuckyForm extends StatefulWidget {
   /// Creates a new [LuckyForm] widget.
   const LuckyForm({
     super.key,
+    required this.controller,
     this.heading = "",
     this.description = "",
     this.hintText = "",
@@ -57,6 +61,7 @@ class _LuckyFormState extends State<LuckyForm> {
           width: double.infinity,
           height: widget.style == LuckyFormStyleEnum.big ? 126 : 50,
           child: TextField(
+            controller: widget.controller,
             maxLines: widget.style == LuckyFormStyleEnum.big ? null : 1,
             style: TextStyle(
               color: context.luckyColors.onSurface,

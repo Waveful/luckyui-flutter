@@ -30,7 +30,6 @@ import 'components/indicators/lucky_pull_to_refresh.dart';
 
 /// A widget that displays the LuckyUI showcase.
 class LuckyShowcasePage extends StatefulWidget {
-
   /// Creates a new [LuckyShowcasePage] widget.
   const LuckyShowcasePage({super.key});
 
@@ -86,7 +85,6 @@ class _LuckyShowcasePageState extends State<LuckyShowcasePage> {
 
 /// A widget that displays the LuckyUI showcase.
 class LuckyShowcase extends StatefulWidget {
-
   /// The theme mode of the showcase.
   final ThemeMode themeMode;
 
@@ -139,10 +137,15 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
     // Insert toast and notification overlays.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Overlay.of(context).insert(
-        OverlayEntry(builder: (BuildContext context) => LuckyToastMessenger(type: "toast")),
+        OverlayEntry(
+          builder: (BuildContext context) => LuckyToastMessenger(type: "toast"),
+        ),
       );
       Overlay.of(context).insert(
-        OverlayEntry(builder: (BuildContext context) => LuckyToastMessenger(type: "notification")),
+        OverlayEntry(
+          builder: (BuildContext context) =>
+              LuckyToastMessenger(type: "notification"),
+        ),
       );
     });
   }
@@ -413,7 +416,7 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                     ),
                   ),
                 if (_filtersController1.selectedIndex == 7)
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.symmetric(horizontal: spaceMd),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -423,6 +426,7 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                         LuckyHeading(text: "Forms"),
                         LuckyDivider(),
                         LuckyForm(
+                          controller: TextEditingController(),
                           heading: "Username",
                           description:
                               "Enter your username, so people can find you on Waveful!",
@@ -431,6 +435,7 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                         ),
                         SizedBox(),
                         LuckyForm(
+                          controller: TextEditingController(),
                           heading: "Bio",
                           description: "Tell your followers who you are!",
                           hintText: "I am mother from Atlanta...",
@@ -440,7 +445,7 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                     ),
                   ),
                 if (_filtersController1.selectedIndex == 8)
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.symmetric(horizontal: spaceMd),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -449,7 +454,10 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                       children: [
                         LuckyHeading(text: "Search Bar"),
                         LuckyDivider(),
-                        LuckySearchBar(hintText: "Foodies communities"),
+                        LuckySearchBar(
+                          controller: TextEditingController(),
+                          hintText: "Foodies communities",
+                        ),
                       ],
                     ),
                   ),
@@ -843,9 +851,34 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const Scaffold(
+                                    builder: (context) => Scaffold(
                                       appBar: LuckyAppBar(
                                         title: "Edit Profile",
+                                      ),
+                                      body: Center(),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                            LuckyButton(
+                              text: "With Title and Action",
+                              style: LuckyButtonStyleEnum.primaryAlternative,
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Scaffold(
+                                      appBar: LuckyAppBar(
+                                        title: "Edit Profile",
+                                        actions: [
+                                          LuckyIconButton(
+                                            onTap: () {},
+                                            icon: LuckyStrokeIcons.settings01,
+                                            size: iconLg,
+                                          ),
+                                          const SizedBox(width: spaceSm),
+                                        ],
                                       ),
                                       body: Center(),
                                     ),

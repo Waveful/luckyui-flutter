@@ -6,6 +6,9 @@ import 'package:luckyui/theme/lucky_tokens.dart';
 /// A widget that displays a search bar.
 class LuckySearchBar extends StatelessWidget {
 
+  /// The controller of the search bar.
+  final TextEditingController controller;
+
   /// The hint text to display in the search bar.
   final String hintText;
 
@@ -15,6 +18,7 @@ class LuckySearchBar extends StatelessWidget {
   /// Creates a new [LuckySearchBar] widget.
   const LuckySearchBar({
     super.key,
+    required this.controller,
     required this.hintText,
     this.icon,
   });
@@ -38,6 +42,7 @@ class LuckySearchBar extends StatelessWidget {
           const SizedBox(width: spaceSm),
           Expanded(
             child: TextField(
+              controller: controller,
               cursorColor: blue,
               style: TextStyle(
                 color: context.luckyColors.onSurface,

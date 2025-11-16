@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:luckyui/animations/lucky_tap_animation.dart';
 import 'package:luckyui/components/indicators/lucky_icons.dart';
+import 'package:luckyui/components/indicators/lucky_red_dot.dart';
 import 'package:luckyui/components/typography/lucky_small_body.dart';
 import 'package:luckyui/theme/lucky_colors.dart';
 import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// A data class that represents a navbar item.
 class LuckyNavBarItemData {
-
   /// The icon of the navbar item.
   final LuckyIconData icon;
 
@@ -16,6 +16,9 @@ class LuckyNavBarItemData {
 
   /// The text of the navbar item.
   final String? text;
+  
+  /// The red dot counter of the navbar item.
+  final int? counter;
 
   /// The callback to be called when the navbar item is tapped.
   final VoidCallback onTap;
@@ -25,6 +28,7 @@ class LuckyNavBarItemData {
     required this.icon,
     this.selectedIcon,
     this.text,
+    this.counter,
     required this.onTap,
   });
 
@@ -34,7 +38,6 @@ class LuckyNavBarItemData {
 
 /// A controller that manages the selected navbar item.
 class LuckyNavBarController extends ChangeNotifier {
-
   int _selectedIndex = 0;
 
   /// The index of the selected navbar item.
@@ -49,7 +52,6 @@ class LuckyNavBarController extends ChangeNotifier {
 
 /// A widget that displays a navbar.
 class LuckyNavBar extends StatefulWidget {
-
   /// The controller that manages the selected navbar item.
   final LuckyNavBarController controller;
 
@@ -57,48 +59,41 @@ class LuckyNavBar extends StatefulWidget {
   final List<LuckyNavBarItemData> items;
 
   /// Creates a new [LuckyNavBar] widget.
-  const LuckyNavBar({
-    super.key,
-    required this.controller,
-    required this.items,
-  });
+  const LuckyNavBar({super.key, required this.controller, required this.items});
 
   @override
   State<LuckyNavBar> createState() => _LuckyNavBarState();
 }
 
 class _LuckyNavBarState extends State<LuckyNavBar> {
-
   int get _selectedIndex => widget.controller.selectedIndex;
 
   @override
   Widget build(BuildContext context) {
     final double bottomPadding = MediaQuery.of(context).padding.bottom;
     return Container(
-      decoration: BoxDecoration(
-        color: context.luckyColors.surface,
-      ),
+      decoration: BoxDecoration(color: context.luckyColors.surface),
       child: Padding(
-        padding: EdgeInsets.only(
-          bottom: bottomPadding,
-        ),
+        padding: EdgeInsets.only(bottom: bottomPadding),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ...widget.items.map((item) {
               if (item.specialItem) {
-                return LuckyNavBarMainItem(
-                  icon: item.icon,
-                  onTap: item.onTap,
-                );
+                return LuckyNavBarMainItem(icon: item.icon, onTap: item.onTap);
               } else {
                 return LuckyNavBarItem(
                   icon: item.icon,
                   selectedIcon: item.selectedIcon!,
                   text: item.text!,
+                  counter: item.counter,
                   onTap: () {
-                    setState(() => widget.controller.changeIndex(widget.items.indexOf(item)));
+                    setState(
+                      () => widget.controller.changeIndex(
+                        widget.items.indexOf(item),
+                      ),
+                    );
                     item.onTap();
                   },
                   selected: _selectedIndex == widget.items.indexOf(item),
@@ -114,7 +109,6 @@ class _LuckyNavBarState extends State<LuckyNavBar> {
 
 /// A widget that displays a main navbar item.
 class LuckyNavBarMainItem extends StatelessWidget {
-
   /// The icon of the main navbar item.
   final LuckyIconData icon;
 
@@ -141,20 +135,11 @@ class LuckyNavBarMainItem extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(
                 horizontal: spaceMd,
-                vertical: spaceXs
+                vertical: spaceXs,
               ),
-              margin: const EdgeInsets.only(
-                bottom: textXs * 0.5,
-              ),
-              decoration: BoxDecoration(
-                color: blue,
-                borderRadius: radius2xl,
-              ),
-              child: LuckyIcon(
-                icon: icon,
-                size: iconLg,
-                color: white,
-              ),
+              margin: const EdgeInsets.only(bottom: textXs * 0.5),
+              decoration: BoxDecoration(color: blue, borderRadius: radius2xl),
+              child: LuckyIcon(icon: icon, size: iconLg, color: white),
             ),
           ),
         ],
@@ -165,7 +150,6 @@ class LuckyNavBarMainItem extends StatelessWidget {
 
 /// A widget that displays a navbar item.
 class LuckyNavBarItem extends StatelessWidget {
-
   /// The icon of the navbar item.
   final LuckyIconData icon;
 
@@ -174,6 +158,9 @@ class LuckyNavBarItem extends StatelessWidget {
 
   /// The text of the navbar item.
   final String text;
+
+  /// The red dot counter of the navbar item.
+  final int? counter;
 
   /// The callback to be called when the navbar item is tapped.
   final VoidCallback onTap;
@@ -187,6 +174,7 @@ class LuckyNavBarItem extends StatelessWidget {
     required this.icon,
     required this.selectedIcon,
     required this.text,
+    this.counter,
     required this.onTap,
     required this.selected,
   });
@@ -203,14 +191,31 @@ class LuckyNavBarItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              LuckyIcon(
-                icon: selected ? selectedIcon : icon,
-                size: iconLg,
-                color: selected ? context.luckyColors.onSurface : context.luckyColors.n600,
+              Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  LuckyIcon(
+                    icon: selected ? selectedIcon : icon,
+                    size: iconLg,
+                    color: selected
+                        ? context.luckyColors.onSurface
+                        : context.luckyColors.n600,
+                  ),
+                  if (counter != null && counter! > 0)
+                    Positioned(
+                      top: -spaceXs,
+                      right: -spaceXs,
+                      child: LuckyRedDot(
+                        counter: counter!,
+                      ),
+                    ),
+                ],
               ),
               LuckySmallBody(
                 text: text,
-                color: selected ? context.luckyColors.onSurface : context.luckyColors.n600,
+                color: selected
+                    ? context.luckyColors.onSurface
+                    : context.luckyColors.n600,
               ),
             ],
           ),

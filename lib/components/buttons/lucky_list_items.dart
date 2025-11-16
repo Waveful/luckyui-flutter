@@ -7,15 +7,11 @@ import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// A widget that displays a list of items with a divider between them.
 class LuckyListItems extends StatelessWidget {
-
   /// The list of items to display in the list.
   final List<LuckyListItemData> items;
 
   /// Creates a new [LuckyListItems] widget.
-  const LuckyListItems({
-    super.key,
-    required this.items,
-  });
+  const LuckyListItems({super.key, required this.items});
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +28,7 @@ class LuckyListItems extends StatelessWidget {
           icon: item.icon,
           text: item.text,
           onTap: item.onTap,
+          showTrailingArrow: item.showTrailingArrow,
         );
       },
     );
@@ -40,7 +37,6 @@ class LuckyListItems extends StatelessWidget {
 
 /// A widget that displays a list item with an icon and a text.
 class LuckyListItem extends StatelessWidget {
-
   /// The icon to display in the list item.
   final LuckyIconData icon;
 
@@ -50,12 +46,16 @@ class LuckyListItem extends StatelessWidget {
   /// The callback to be called when the list item is tapped.
   final VoidCallback onTap;
 
+  /// Whether to show a trailing arrow.
+  final bool showTrailingArrow;
+
   /// Creates a new [LuckyListItem] widget.
   const LuckyListItem({
     super.key,
     required this.icon,
     required this.text,
     required this.onTap,
+    this.showTrailingArrow = true,
   });
 
   @override
@@ -70,16 +70,19 @@ class LuckyListItem extends StatelessWidget {
             LuckyIcon(icon: icon, size: iconLg),
             const SizedBox(width: spaceMd),
             Expanded(
-              child: LuckyBody(
-                text: text,
-                fontWeight: mediumFontWeight,
-              ),
+              child: LuckyBody(text: text, fontWeight: mediumFontWeight),
             ),
             const LuckyIcon(
               nativeIcon: Icons.arrow_forward_ios_rounded,
               size: iconMd,
               color: gray500,
             ),
+            if (showTrailingArrow)
+              const LuckyIcon(
+                nativeIcon: Icons.arrow_forward_ios_rounded,
+                size: iconMd,
+                color: gray500,
+              ),
           ],
         ),
       ),
@@ -98,10 +101,14 @@ class LuckyListItemData {
   /// The callback to be called when the list item is tapped.
   final VoidCallback onTap;
 
+  /// Whether to show a trailing arrow.
+  final bool showTrailingArrow;
+
   /// Creates a new [LuckyListItemData] data class.
   const LuckyListItemData({
     required this.icon,
     required this.text,
     required this.onTap,
+    this.showTrailingArrow = true,
   });
 }
