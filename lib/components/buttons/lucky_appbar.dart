@@ -123,6 +123,7 @@ class LuckyAppBar extends StatelessWidget implements PreferredSizeWidget {
               ? LuckyHeading(
                   text: title!,
                   fontSize: textLg,
+                  fontWeight: boldFontWeight,
                   lineHeight: lineHeightXs,
                 )
               : null),
