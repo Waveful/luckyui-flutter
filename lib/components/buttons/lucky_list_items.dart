@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:luckyui/animations/lucky_tap_animation.dart';
-import 'package:luckyui/components/lucky_divider.dart';
 import 'package:luckyui/components/indicators/lucky_icons.dart';
+import 'package:luckyui/components/layout/lucky_divider.dart';
 import 'package:luckyui/components/typography/lucky_body.dart';
 import 'package:luckyui/theme/lucky_tokens.dart';
 

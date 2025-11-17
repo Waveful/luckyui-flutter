@@ -22,6 +22,9 @@ export 'components/indicators/lucky_progress_bar.dart';
 export 'components/indicators/lucky_pull_to_refresh.dart';
 export 'components/indicators/lucky_red_dot.dart';
 
+export 'components/layout/lucky_card.dart';
+export 'components/layout/lucky_divider.dart';
+
 export 'components/navigation/lucky_bottom_sheet.dart';
 export 'components/navigation/lucky_filters.dart';
 export 'components/navigation/lucky_modal.dart';
@@ -33,7 +36,6 @@ export 'components/typography/lucky_heading.dart';
 export 'components/typography/lucky_markdown.dart';
 export 'components/typography/lucky_small_body.dart';
 
-export 'components/lucky_divider.dart';
 export 'components/lucky_toast.dart';
 
 export 'lucky_showcase.dart';

@@ -14,7 +14,8 @@ import 'package:luckyui/components/indicators/lucky_icons.dart';
 import 'package:luckyui/components/indicators/lucky_loading.dart';
 import 'package:luckyui/components/indicators/lucky_progress_bar.dart';
 import 'package:luckyui/components/indicators/lucky_pull_to_refresh.dart';
-import 'package:luckyui/components/lucky_divider.dart';
+import 'package:luckyui/components/layout/lucky_card.dart';
+import 'package:luckyui/components/layout/lucky_divider.dart';
 import 'package:luckyui/components/lucky_toast.dart';
 import 'package:luckyui/components/navigation/lucky_bottom_sheet.dart';
 import 'package:luckyui/components/navigation/lucky_filters.dart';
@@ -165,6 +166,7 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                     LuckyFilterData(text: "Radios"),
                     LuckyFilterData(text: "Loading"),
                     LuckyFilterData(text: "Markdown"),
+                    LuckyFilterData(text: "Card"),
                   ],
                 ),
                 const SizedBox(height: spaceMd),
@@ -1028,6 +1030,51 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                             LuckyMarkdown(
                               text:
                                   "### Heading 3\nNormal text.\n**Bold text**.\n*Italic text.*\n~~Strikethrough text.~~\n`Inline code text.`\n> Blockquote text.\n---\nDivider\n\nLink text [@Waveful](https://waveful.me/Waveful)\n- List item 1\n- List item 2\n- [x] TO DO\n- [ ] TO NOT DO\n| Column 1 | Column 2 |\n|-----------|-----------|\n| Row 1     | Data 1    |\n| Row 2     | Data 2    |\n\n![Quack](https://i.ibb.co/svnq8hg5/quacky.png)",
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  if (_filtersController1.selectedIndex == 22)
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: spaceMd,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: spaceMd,
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          spacing: spaceMd,
+                          children: [
+                            const LuckyHeading(text: "Card"),
+                            const LuckyDivider(),
+                            LuckyCard(
+                              title: "Account",
+                              child: LuckyListItems(
+                                items: [
+                                  LuckyListItemData(
+                                    icon: LuckyStrokeIcons.profile,
+                                    text: "Account",
+                                    onTap: () {},
+                                  ),
+                                  LuckyListItemData(
+                                    icon: LuckyStrokeIcons.lock,
+                                    text: "Privacy",
+                                    onTap: () {},
+                                  ),
+                                  LuckyListItemData(
+                                    icon: LuckyStrokeIcons.security,
+                                    text: "Security",
+                                    onTap: () {},
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),

@@ -10,6 +10,9 @@ class LuckySmallBody extends StatelessWidget {
   /// The color of the text.
   final Color? color;
 
+  /// The font size of the text.
+  final double fontSize;
+
   /// The font weight of the text.
   final FontWeight fontWeight;
 
@@ -27,6 +30,7 @@ class LuckySmallBody extends StatelessWidget {
     super.key,
     required this.text,
     this.color,
+    this.fontSize = textXs,
     this.fontWeight = normalFontWeight,
     this.textAlign = TextAlign.start,
     this.maxLines,
@@ -39,7 +43,7 @@ class LuckySmallBody extends StatelessWidget {
       text,
       style: TextStyle(
         color: color ?? context.luckyColors.n500,
-        fontSize: textXs,
+        fontSize: fontSize,
         fontWeight: fontWeight,
         height: lineHeightXs,
       ),
