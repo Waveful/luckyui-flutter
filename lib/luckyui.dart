@@ -2,6 +2,8 @@ export 'theme/lucky_theme.dart';
 export 'theme/lucky_colors.dart';
 export 'theme/lucky_tokens.dart';
 
+export 'animations/lucky_tap_animation.dart';
+
 export 'components/buttons/lucky_appbar.dart';
 export 'components/buttons/lucky_button.dart';
 export 'components/buttons/lucky_icon_button.dart';
