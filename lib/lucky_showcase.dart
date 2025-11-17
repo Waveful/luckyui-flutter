@@ -12,6 +12,7 @@ import 'package:luckyui/components/fields/lucky_search_bar.dart';
 import 'package:luckyui/components/indicators/lucky_badge.dart';
 import 'package:luckyui/components/indicators/lucky_icons.dart';
 import 'package:luckyui/components/indicators/lucky_progress_bar.dart';
+import 'package:luckyui/components/indicators/lucky_pull_to_refresh.dart';
 import 'package:luckyui/components/lucky_divider.dart';
 import 'package:luckyui/components/lucky_toast.dart';
 import 'package:luckyui/components/navigation/lucky_bottom_sheet.dart';
@@ -25,8 +26,6 @@ import 'package:luckyui/components/typography/lucky_markdown.dart';
 import 'package:luckyui/components/typography/lucky_small_body.dart';
 import 'package:luckyui/theme/lucky_colors.dart';
 import 'package:luckyui/theme/lucky_tokens.dart';
-
-import 'components/indicators/lucky_pull_to_refresh.dart';
 
 /// A widget that displays the LuckyUI showcase.
 class LuckyShowcasePage extends StatefulWidget {
