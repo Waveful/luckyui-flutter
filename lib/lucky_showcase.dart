@@ -180,8 +180,8 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                         const SizedBox(height: spaceMd),
                         Center(
                           child: Image.asset(
-                            "assets/lucky_ui_logo.png",
-                            width: MediaQuery.of(context).size.width * 0.6,
+                            "assets/lucky_sticker.png",
+                            width: MediaQuery.of(context).size.width * 0.5,
                             package: 'luckyui',
                           ),
                         ),
