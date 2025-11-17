@@ -141,7 +141,7 @@ class LuckyToastMessengerState extends State<LuckyToastMessenger> {
     final double titleTextHeight = titleTextPainter.size.height;
 
     final double snackbarHeight =
-        bodyTextHeight + (_title != null ? titleTextHeight : 0.0) + spaceSm * 2;
+        bodyTextHeight + (_title != null ? titleTextHeight : 0.0) + (spaceSm * 2) + (spaceMd * 2);
     final double screenHeight = MediaQuery.of(context).size.height;
     final double padding = isBottom
         ? MediaQuery.of(context).padding.bottom
