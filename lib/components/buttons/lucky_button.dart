@@ -63,7 +63,7 @@ class LuckyButton extends StatelessWidget {
               : context.luckyColors.onSurface);
 
     return LuckyTapAnimation(
-      onTap: onTap,
+      onTap: disabled ? null : onTap,
       child: AnimatedContainer(
         duration: fastDuration,
         curve: Curves.easeIn,
