@@ -4,15 +4,11 @@ import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// A widget that displays a loading indicator.
 class LuckyLoading extends StatelessWidget {
-
   /// The size of the loading indicator.
   final double size;
 
   /// Creates a new [LuckyLoading] widget.
-  const LuckyLoading({
-    super.key,
-    this.size = iconLg,
-  });
+  const LuckyLoading({super.key, this.size = iconLg});
 
   @override
   Widget build(BuildContext context) {

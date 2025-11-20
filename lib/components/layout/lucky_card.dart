@@ -18,7 +18,10 @@ class LuckyCard extends StatelessWidget {
   const LuckyCard({
     super.key,
     this.title,
-    this.padding = const EdgeInsets.symmetric(vertical: spaceSm, horizontal: spaceMd),
+    this.padding = const EdgeInsets.symmetric(
+      vertical: spaceSm,
+      horizontal: spaceMd,
+    ),
     required this.child,
   });
 

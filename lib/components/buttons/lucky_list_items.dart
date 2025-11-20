@@ -79,11 +79,7 @@ class LuckyListItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: spaceXs),
         child: Row(
           children: [
-            LuckyIcon(
-              icon: icon,
-              nativeIcon: nativeIcon,
-              size: iconLg,
-            ),
+            LuckyIcon(icon: icon, nativeIcon: nativeIcon, size: iconLg),
             const SizedBox(width: spaceMd),
             Expanded(
               child: LuckyBody(text: text, fontWeight: semiBoldFontWeight),

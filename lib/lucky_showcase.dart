@@ -1119,10 +1119,7 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                                   size: space5xl,
                                 ),
                                 const SizedBox(width: spaceMd),
-                                LuckyAvatar(
-                                  onTap: () {},
-                                  size: space4xl,
-                                ),
+                                LuckyAvatar(onTap: () {}, size: space4xl),
                               ],
                             ),
                           ],
