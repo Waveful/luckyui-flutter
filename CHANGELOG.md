@@ -1,3 +1,10 @@
+## 0.0.7
+New components:
+- Avatar
+
+Others:
+- Fix multiple components logic issues
+
 ## 0.0.6
 New components:
 - Loading indicator
