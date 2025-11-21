@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:luckyui/components/buttons/lucky_icon_button.dart';
-import 'package:luckyui/components/indicators/lucky_icons.dart';
 import 'package:luckyui/components/buttons/lucky_text_button.dart';
 import 'package:luckyui/components/typography/lucky_body.dart';
 import 'package:luckyui/components/typography/lucky_heading.dart';
@@ -119,9 +118,6 @@ class LuckyModal extends StatelessWidget {
   /// The body of the modal.
   final String? body;
 
-  /// The icon to display in the close button.
-  final LuckyIconData? closeIcon;
-
   /// The child to display in the modal.
   final Widget? child;
 
@@ -132,7 +128,6 @@ class LuckyModal extends StatelessWidget {
     this.height,
     this.title,
     this.body,
-    this.closeIcon,
     this.child,
   });
 
