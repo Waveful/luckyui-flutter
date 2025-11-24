@@ -1,3 +1,9 @@
+## 1.0.1
+Small README change.
+
+## 1.0.0
+Initial LuckyUI public version. Check https://lucky-ui.com for components reference.
+
 ## 0.0.8
 Implement missing parameters for various components.
 

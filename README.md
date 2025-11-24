@@ -133,7 +133,7 @@ LuckyTextButton(
 )
 ```
 
-### Forms
+### Fields
 
 ```dart
 LuckyTextField(
@@ -209,7 +209,6 @@ LuckyUI includes a comprehensive set of design tokens:
 - **Typography**: Consistent text styles and hierarchy
 - **Spacing**: Standardized spacing values
 - **Border Radius**: Consistent corner radius values
-- **Shadows**: Elevation and shadow system
 
 ## Showcase
 
