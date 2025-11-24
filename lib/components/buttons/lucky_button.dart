@@ -14,6 +14,7 @@ enum LuckyButtonStyleEnum {
   /// [secondary] - A secondary button with a surface background, onSurface text and a border.
   secondary,
 
+  /// [secondaryAlternative] - A secondary alternative button with a n100 background and onSurface text.
   secondaryAlternative,
 }
 
