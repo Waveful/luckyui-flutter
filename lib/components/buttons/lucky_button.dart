@@ -14,7 +14,6 @@ enum LuckyButtonStyleEnum {
   /// [secondary] - A secondary button with a surface background, onSurface text and a border.
   secondary,
 
-
   secondaryAlternative,
 }
 
@@ -56,8 +55,8 @@ class LuckyButton extends StatelessWidget {
         : (style == LuckyButtonStyleEnum.primaryAlternative
               ? context.luckyColors.onSurface
               : (style == LuckyButtonStyleEnum.secondaryAlternative
-                  ? context.luckyColors.n100
-                  : context.luckyColors.surface));
+                    ? context.luckyColors.n100
+                    : context.luckyColors.surface));
     final Color disabledColor = style == LuckyButtonStyleEnum.primary
         ? blue300
         : context.luckyColors.n100;

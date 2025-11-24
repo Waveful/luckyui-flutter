@@ -36,7 +36,9 @@ class LuckyListItems extends StatelessWidget {
       physics: scrollable ? null : const NeverScrollableScrollPhysics(),
       itemBuilder: (BuildContext context, int index) {
         if (index.isOdd) {
-          return showDividers ? const LuckyDivider(spacing: spaceSm) : const SizedBox(height: spaceMd,);
+          return showDividers
+              ? const LuckyDivider(spacing: spaceSm)
+              : const SizedBox(height: spaceMd);
         }
         final itemIndex = index ~/ 2;
         final LuckyListItemData item = items[itemIndex];

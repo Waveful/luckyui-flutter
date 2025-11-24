@@ -76,8 +76,10 @@ class LuckyToastMessenger extends StatefulWidget {
     /// The alignment of the toast.
     LuckyToastAlignmentEnum alignment = LuckyToastAlignmentEnum.bottom,
   }) {
-    if(widget != null && (widgetHeight == null || widgetWidth == null)) {
-      throw Exception("Widget height and width are mandatory if widget is provided.");
+    if (widget != null && (widgetHeight == null || widgetWidth == null)) {
+      throw Exception(
+        "Widget height and width are mandatory if widget is provided.",
+      );
     }
 
     if (alignment == LuckyToastAlignmentEnum.top) {
@@ -136,7 +138,8 @@ class LuckyToastMessengerState extends State<LuckyToastMessenger> {
 
   @override
   Widget build(BuildContext context) {
-    final double maxWidth = MediaQuery.of(context).size.width - (spaceSm * 2) - (_widgetWidth ?? 0);
+    final double maxWidth =
+        MediaQuery.of(context).size.width - (spaceSm * 2) - (_widgetWidth ?? 0);
     final TextPainter bodyTextPainter = TextPainter(
       textDirection: TextDirection.ltr,
       text: TextSpan(
@@ -164,7 +167,10 @@ class LuckyToastMessengerState extends State<LuckyToastMessenger> {
 
     final double snackbarHeight =
         (bodyTextHeight +
-        (_title != null ? titleTextHeight : 0.0).clamp(_widgetHeight ?? 0, double.infinity)) +
+            (_title != null ? titleTextHeight : 0.0).clamp(
+              _widgetHeight ?? 0,
+              double.infinity,
+            )) +
         (spaceSm * 2) +
         (spaceMd * 2);
     final double screenHeight = MediaQuery.of(context).size.height;
@@ -221,8 +227,7 @@ class LuckyToastMessengerState extends State<LuckyToastMessenger> {
                   ),
                   child: Row(
                     children: [
-                      if (_widget != null)
-                        _widget!,
+                      if (_widget != null) _widget!,
                       Expanded(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,

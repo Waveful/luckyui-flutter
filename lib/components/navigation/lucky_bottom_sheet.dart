@@ -66,18 +66,16 @@ class LuckyBottomSheet extends StatelessWidget {
             ],
           ),
         ),
-        if (showClose) Padding(
-          padding: const EdgeInsets.only(
-            right: spaceSm,
-            top: spaceSm,
+        if (showClose)
+          Padding(
+            padding: const EdgeInsets.only(right: spaceSm, top: spaceSm),
+            child: LuckyIconButton(
+              nativeIcon: Icons.close_rounded,
+              size: iconLg,
+              color: context.luckyColors.n600,
+              onTap: () => Navigator.pop(context), // Close modal.
+            ),
           ),
-          child: LuckyIconButton(
-            nativeIcon: Icons.close_rounded,
-            size: iconLg,
-            color: context.luckyColors.n600,
-            onTap: () => Navigator.pop(context), // Close modal.
-          ),
-        ),
       ],
     );
   }

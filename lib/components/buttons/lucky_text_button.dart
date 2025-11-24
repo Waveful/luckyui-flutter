@@ -40,7 +40,16 @@ class LuckyTextButton extends StatelessWidget {
       onTap: onTap,
       pressedScale: 0.95,
       child: Padding(
-        padding: padding ?? EdgeInsets.symmetric(vertical: (tapArea - textBase - (textBase * lineHeightBase)).clamp(0.0, tapArea) / 2),
+        padding:
+            padding ??
+            EdgeInsets.symmetric(
+              vertical:
+                  (tapArea - textBase - (textBase * lineHeightBase)).clamp(
+                    0.0,
+                    tapArea,
+                  ) /
+                  2,
+            ),
         child: LuckyBody(
           text: text,
           color: color,
