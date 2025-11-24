@@ -13,6 +13,9 @@ enum LuckyButtonStyleEnum {
 
   /// [secondary] - A secondary button with a surface background, onSurface text and a border.
   secondary,
+
+
+  secondaryAlternative,
 }
 
 /// A widget that displays a button with a text.
@@ -52,10 +55,12 @@ class LuckyButton extends StatelessWidget {
         ? blue
         : (style == LuckyButtonStyleEnum.primaryAlternative
               ? context.luckyColors.onSurface
-              : context.luckyColors.surface);
+              : (style == LuckyButtonStyleEnum.secondaryAlternative
+                  ? context.luckyColors.n100
+                  : context.luckyColors.surface));
     final Color disabledColor = style == LuckyButtonStyleEnum.primary
         ? blue300
-        : context.luckyColors.n200;
+        : context.luckyColors.n100;
     final Color textColor = style == LuckyButtonStyleEnum.primary
         ? white
         : (style == LuckyButtonStyleEnum.primaryAlternative

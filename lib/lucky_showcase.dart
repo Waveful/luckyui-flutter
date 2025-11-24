@@ -242,6 +242,11 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                           text: "Secondary",
                           style: LuckyButtonStyleEnum.secondary,
                         ),
+                        LuckyButton(
+                          onTap: () {},
+                          text: "Secondary Alternative",
+                          style: LuckyButtonStyleEnum.secondaryAlternative,
+                        ),
                       ],
                     ),
                   ),
