@@ -16,12 +16,16 @@ class LuckyListItems extends StatelessWidget {
   /// Whether the list view should be shrink wrapped.
   final bool shrinkWrap;
 
+  /// Whether to show dividers between the list items.
+  final bool showDividers;
+
   /// Creates a new [LuckyListItems] widget.
   const LuckyListItems({
     super.key,
     required this.items,
     this.scrollable = true,
     this.shrinkWrap = false,
+    this.showDividers = true,
   });
 
   @override
@@ -32,7 +36,7 @@ class LuckyListItems extends StatelessWidget {
       physics: scrollable ? null : const NeverScrollableScrollPhysics(),
       itemBuilder: (BuildContext context, int index) {
         if (index.isOdd) {
-          return const LuckyDivider(spacing: spaceSm);
+          return showDividers ? const LuckyDivider(spacing: spaceSm) : const SizedBox(height: spaceMd,);
         }
         final itemIndex = index ~/ 2;
         final LuckyListItemData item = items[itemIndex];

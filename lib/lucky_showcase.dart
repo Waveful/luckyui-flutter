@@ -1086,6 +1086,7 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                               child: LuckyListItems(
                                 scrollable: false,
                                 shrinkWrap: true,
+                                showDividers: false,
                                 items: [
                                   LuckyListItemData(
                                     icon: LuckyStrokeIcons.profile,
