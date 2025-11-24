@@ -252,6 +252,9 @@ const double iconXl = 32; // cards, hero sections
 /// The size of the 2xl icon.
 const double icon2xl = 48; // splash screens, large headers
 
+/// The minimum tap area.
+const double tapArea = 48.0;
+
 // Animation durations
 /// The duration of the ultra fast duration.
 const Duration ultraFastDuration = Duration(milliseconds: 75);

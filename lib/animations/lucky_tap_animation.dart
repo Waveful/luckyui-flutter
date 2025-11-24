@@ -12,6 +12,9 @@ class LuckyTapAnimation extends StatefulWidget {
   /// The scale to apply when the widget is pressed.
   final double? pressedScale;
 
+  /// The hit test behavior of the GestureDetector.
+  final HitTestBehavior hitTestBehavior;
+
   /// The child widget to be animated.
   final Widget child;
 
@@ -21,6 +24,7 @@ class LuckyTapAnimation extends StatefulWidget {
     this.onTap,
     this.animationNotifier,
     this.pressedScale,
+    this.hitTestBehavior = HitTestBehavior.opaque,
     required this.child,
   });
 
@@ -75,7 +79,7 @@ class _LuckyTapAnimationState extends State<LuckyTapAnimation> {
           widget.animationNotifier?.value = false;
         },
         child: GestureDetector(
-          behavior: HitTestBehavior.opaque,
+          behavior: widget.hitTestBehavior,
           onTap: widget.onTap,
           child: widget.child,
         ),

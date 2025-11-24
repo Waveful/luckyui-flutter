@@ -68,8 +68,8 @@ class LuckyBottomSheet extends StatelessWidget {
         ),
         if (showClose) Padding(
           padding: const EdgeInsets.only(
-            right: spaceMd,
-            top: spaceMd,
+            right: spaceSm,
+            top: spaceSm,
           ),
           child: LuckyIconButton(
             nativeIcon: Icons.close_rounded,

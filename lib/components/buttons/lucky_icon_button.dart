@@ -36,11 +36,14 @@ class LuckyIconButton extends StatelessWidget {
     return LuckyTapAnimation(
       onTap: onTap,
       pressedScale: 0.925,
-      child: LuckyIcon(
-        icon: icon,
-        nativeIcon: nativeIcon,
-        size: size,
-        color: color ?? context.luckyColors.onSurface,
+      child: Padding(
+        padding: EdgeInsets.all((tapArea - size).clamp(0.0, tapArea) / 2),
+        child: LuckyIcon(
+          icon: icon,
+          nativeIcon: nativeIcon,
+          size: size,
+          color: color ?? context.luckyColors.onSurface,
+        ),
       ),
     );
   }

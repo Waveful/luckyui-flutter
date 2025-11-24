@@ -882,7 +882,6 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                                             icon: LuckyStrokeIcons.settings01,
                                             size: iconLg,
                                           ),
-                                          const SizedBox(width: spaceSm),
                                         ],
                                       ),
                                       body: Center(),

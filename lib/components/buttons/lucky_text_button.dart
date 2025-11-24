@@ -17,6 +17,9 @@ class LuckyTextButton extends StatelessWidget {
   /// The text alignment of the text.
   final TextAlign textAlign;
 
+  /// The padding of the button. Defaults to minimum [tapArea] to ensure the button is tappable.
+  final EdgeInsetsGeometry? padding;
+
   /// The callback to be called when the button is tapped.
   final VoidCallback onTap;
 
@@ -26,8 +29,9 @@ class LuckyTextButton extends StatelessWidget {
     required this.text,
     this.color = blue500,
     this.fontWeight = semiBoldFontWeight,
-    required this.onTap,
     this.textAlign = TextAlign.start,
+    this.padding,
+    required this.onTap,
   });
 
   @override
@@ -35,11 +39,14 @@ class LuckyTextButton extends StatelessWidget {
     return LuckyTapAnimation(
       onTap: onTap,
       pressedScale: 0.95,
-      child: LuckyBody(
-        text: text,
-        color: color,
-        fontWeight: fontWeight,
-        textAlign: textAlign,
+      child: Padding(
+        padding: padding ?? EdgeInsets.symmetric(vertical: (tapArea - textBase - (textBase * lineHeightBase)).clamp(0.0, tapArea) / 2),
+        child: LuckyBody(
+          text: text,
+          color: color,
+          fontWeight: fontWeight,
+          textAlign: textAlign,
+        ),
       ),
     );
   }

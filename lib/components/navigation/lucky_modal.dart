@@ -169,8 +169,8 @@ class LuckyModal extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: Padding(
                     padding: const EdgeInsets.only(
-                      right: spaceMd,
-                      top: spaceMd,
+                      right: spaceSm,
+                      top: spaceSm,
                     ),
                     child: LuckyIconButton(
                       nativeIcon: Icons.close_rounded,
