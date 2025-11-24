@@ -123,13 +123,8 @@ class LuckyFilter extends StatelessWidget {
         decoration: BoxDecoration(
           color: selected
               ? context.luckyColors.onSurface
-              : context.luckyColors.surface,
+              : context.luckyColors.n100,
           borderRadius: radius2xl,
-          border: Border.all(
-            color: selected
-                ? context.luckyColors.onSurface
-                : context.luckyColors.n100,
-          ),
         ),
         padding: const EdgeInsets.symmetric(
           horizontal: spaceSm,
@@ -144,7 +139,7 @@ class LuckyFilter extends StatelessWidget {
                 icon: icon,
                 color: selected
                     ? context.luckyColors.surface
-                    : context.luckyColors.n700,
+                    : context.luckyColors.n800,
                 size: iconSm,
               ),
             if (icon != null) const SizedBox(width: spaceXs),
@@ -152,7 +147,7 @@ class LuckyFilter extends StatelessWidget {
               text: text,
               color: selected
                   ? context.luckyColors.surface
-                  : context.luckyColors.n700,
+                  : context.luckyColors.n800,
               fontWeight: semiBoldFontWeight,
               lineHeight: lineHeightXs,
             ),

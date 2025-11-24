@@ -6,6 +6,7 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
   /// Creates a new [LuckyColors] class.
   const LuckyColors({
     required this.surface,
+    required this.n50,
     required this.n100,
     required this.n200,
     required this.n300,
@@ -21,6 +22,9 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
 
   /// The surface color.
   final Color surface;
+
+  /// The n50 color.
+  final Color n50;
 
   /// The n100 color.
   final Color n100;
@@ -58,6 +62,7 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
   /// The light theme colors.
   static const LuckyColors light = LuckyColors(
     surface: Color(0xFFFFFFFF),
+    n50: Color(0xFFF4F4F4),
     n100: Color(0xFFE6E6E6),
     n200: Color(0xFFCCCCCC),
     n300: Color(0xFFB3B3B3),
@@ -74,6 +79,7 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
   /// The dark theme colors.
   static const LuckyColors dark = LuckyColors(
     surface: Color(0xFF000000),
+    n50: Color(0xFF0B0B0B),
     n100: Color(0xFF1A1A1A),
     n200: Color(0xFF333333),
     n300: Color(0xFF4D4D4D),
@@ -90,6 +96,7 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
   @override
   LuckyColors copyWith({
     Color? surface,
+    Color? n50,
     Color? n100,
     Color? n200,
     Color? n300,
@@ -104,6 +111,7 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
   }) {
     return LuckyColors(
       surface: surface ?? this.surface,
+      n50: n50 ?? this.n50,
       n100: n100 ?? this.n100,
       n200: n200 ?? this.n200,
       n300: n300 ?? this.n300,
@@ -123,6 +131,7 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
     if (other is! LuckyColors) return this;
     return LuckyColors(
       surface: Color.lerp(surface, other.surface, t)!,
+      n50: Color.lerp(n50, other.n50, t)!,
       n100: Color.lerp(n100, other.n100, t)!,
       n200: Color.lerp(n200, other.n200, t)!,
       n300: Color.lerp(n300, other.n300, t)!,

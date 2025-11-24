@@ -43,7 +43,7 @@ class LuckyCard extends StatelessWidget {
         Container(
           padding: padding,
           decoration: BoxDecoration(
-            color: context.luckyColors.n100,
+            color: context.luckyColors.n50,
             borderRadius: radiusSm,
           ),
           child: child,

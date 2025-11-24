@@ -42,7 +42,7 @@ class LuckySmallBody extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        color: color ?? context.luckyColors.n500,
+        color: color ?? context.luckyColors.n800,
         fontSize: fontSize,
         fontWeight: fontWeight,
         height: lineHeightXs,
