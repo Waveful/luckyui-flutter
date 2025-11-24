@@ -1,3 +1,4 @@
+[![LuckyUI Flutter Banner](https://i.postimg.cc/CMWcYDhG/luckyui-banner-min.png)](https://lucky-ui.com)
 # LuckyUI Flutter
 
 A comprehensive Flutter design system package created by Waveful, providing scalable and consistent UI components for modern Flutter applications.
@@ -22,6 +23,7 @@ LuckyUI is a complete design system that offers a cohesive set of components, th
 - `LuckyIconButton` - Icon-only buttons with various sizes
 - `LuckySwitch` - Customizable toggle switches
 - `LuckyAppBar` - Consistent app bar implementation
+- `LuckyRadios` - Radio button selection components
 
 #### Form & Input Components
 - `LuckyTextField` - Text field wrapper with validation support
@@ -34,6 +36,7 @@ LuckyUI is a complete design system that offers a cohesive set of components, th
 - `LuckyModal` - Modal dialog system
 - `LuckyBottomSheet` - Bottom sheet components
 - `LuckyFilters` - Filter and selection components
+- `LuckyCard` - Card container component
 
 #### Indicators & Feedback
 - `LuckyBadge` - Notification badges and labels
@@ -41,11 +44,15 @@ LuckyUI is a complete design system that offers a cohesive set of components, th
 - `LuckyRedDot` - Notification dots
 - `LuckyIcons` - Icon system integration
 - `LuckyToast` - Toast notification system
+- `LuckyAvatar` - Avatar component with image or letter support
+- `LuckyLoading` - Loading indicator component
+- `LuckyPullToRefresh` - Pull-to-refresh wrapper component
 
 #### Typography
 - `LuckyHeading` - Heading text components
 - `LuckyBody` - Body text components
 - `LuckySmallBody` - Small text components
+- `LuckyMarkdown` - Markdown text rendering component
 
 #### Utilities
 - `LuckyDivider` - Consistent divider components
@@ -54,21 +61,6 @@ LuckyUI is a complete design system that offers a cohesive set of components, th
 - `LuckyTapAnimation` - Interactive tap animations
 
 ## Getting Started
-
-### Installation
-
-Add LuckyUI to your `pubspec.yaml`:
-
-```yaml
-dependencies:
-  luckyui: ^0.0.1
-```
-
-Then run:
-
-```bash
-flutter pub get
-```
 
 ### Basic Usage
 
@@ -95,18 +87,18 @@ class MyApp extends StatelessWidget {
           title: 'My App',
           actions: [
             LuckyIconButton(
-              icon: Icons.search,
-              onPressed: () {},
+              nativeIcon: Icons.search,
+              onTap: () {},
             ),
           ],
         ),
         body: Column(
           children: [
-            LuckyHeading('Welcome to LuckyUI'),
-            LuckyBody('This is a sample app using LuckyUI components.'),
+            LuckyHeading(text: 'Welcome to LuckyUI'),
+            LuckyBody(text: 'This is a sample app using LuckyUI components.'),
             LuckyButton(
               text: 'Get Started',
-              onPressed: () {},
+              onTap: () {},
             ),
           ],
         ),
@@ -124,20 +116,20 @@ class MyApp extends StatelessWidget {
 // Primary button
 LuckyButton(
   text: 'Primary Action',
-  onPressed: () {},
+  onTap: () {},
 )
 
 // Secondary button
 LuckyButton(
   text: 'Secondary Action',
-  variant: ButtonVariant.secondary,
-  onPressed: () {},
+  style: LuckyButtonStyleEnum.secondary,
+  onTap: () {},
 )
 
 // Text button
 LuckyTextButton(
   text: 'Text Action',
-  onPressed: () {},
+  onTap: () {},
 )
 ```
 
@@ -156,13 +148,29 @@ LuckyTextField(
 ### Navigation
 
 ```dart
+final navBarController = LuckyNavBarController();
+
 LuckyNavBar(
-  currentIndex: 0,
-  onTap: (index) {},
+  controller: navBarController,
   items: [
-    LuckyNavBarItem(icon: Icons.home, label: 'Home'),
-    LuckyNavBarItem(icon: Icons.search, label: 'Search'),
-    LuckyNavBarItem(icon: Icons.person, label: 'Profile'),
+    LuckyNavBarItemData(
+      icon: LuckyStrokeIcons.home01,
+      selectedIcon: LuckyStrokeIcons.home01,
+      text: 'Home',
+      onTap: () {},
+    ),
+    LuckyNavBarItemData(
+      icon: LuckyStrokeIcons.search01,
+      selectedIcon: LuckyStrokeIcons.search01,
+      text: 'Search',
+      onTap: () {},
+    ),
+    LuckyNavBarItemData(
+      icon: LuckyStrokeIcons.user01,
+      selectedIcon: LuckyStrokeIcons.user01,
+      text: 'Profile',
+      onTap: () {},
+    ),
   ],
 )
 ```
@@ -218,7 +226,10 @@ The package includes a comprehensive showcase (`LuckyShowcasePage`) that demonst
 
 ## Dependencies
 
-- `hugeicons: ^1.1.1` - For comprehensive icon support
+- `hugeicons: ^1.1.1` - For comprehensive icon support.
+
+Please note that Hugeicons has its own license listed [here](https://hugeicons.com?via=waveful). We both support their custom icon format, and Flutter's standard one.
+By default, we only import stroke icons. Use 'LuckyStrokeIcons' to reference them.
 
 ## Contributing
 
