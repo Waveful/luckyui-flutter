@@ -1,3 +1,6 @@
+## 0.0.8
+Implement missing parameters for various components.
+
 ## 0.0.7
 New components:
 - Avatar
