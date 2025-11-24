@@ -59,7 +59,7 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
   static const LuckyColors light = LuckyColors(
     surface: Color(0xFFFFFFFF),
     n100: Color(0xFFE6E6E6),
-    n200: Color(0xFFE5E5E5),
+    n200: Color(0xFFCCCCCC),
     n300: Color(0xFFB3B3B3),
     n400: Color(0xFF999999),
     n500: Color(0xFF808080),
@@ -81,7 +81,7 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
     n500: Color(0xFF808080),
     n600: Color(0xFF999999),
     n700: Color(0xFFB3B3B3),
-    n800: Color(0xFFE5E5E5),
+    n800: Color(0xFFCCCCCC),
     n900: Color(0xFFE6E6E6),
     onSurface: Color(0xFFFFFFFF),
     surfaceTint: Color(0xFF1A1A1A),
