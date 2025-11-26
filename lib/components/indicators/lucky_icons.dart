@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:hugeicons/styles/solid_rounded.dart';
 import 'package:hugeicons/styles/stroke_rounded.dart';
 import 'package:luckyui/theme/lucky_colors.dart';
 import 'package:luckyui/theme/lucky_tokens.dart';
+
+/// A type alias for the solid icons.
+typedef LuckySolidIcons = HugeIconsSolidRounded;
 
 /// A type alias for the stroke icons.
 typedef LuckyStrokeIcons = HugeIconsStrokeRounded;

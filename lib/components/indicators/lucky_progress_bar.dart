@@ -15,6 +15,9 @@ class LuckyProgressBar extends StatelessWidget {
   /// The text to display in the progress bar for the total value.
   final String totalText;
 
+  /// Whether to show text in the progress bar (uses current/total if true and no custom text provided).
+  final bool showText;
+
   /// Creates a new [LuckyProgressBar] widget.
   const LuckyProgressBar({
     super.key,
@@ -22,13 +25,30 @@ class LuckyProgressBar extends StatelessWidget {
     required this.total,
     this.currentText = "",
     this.totalText = "",
+    this.showText = false,
   });
 
   /// The progress of the progress bar.
   double get progress => current / total;
 
   /// Whether the text should be shown in the progress bar.
-  bool get showText => currentText.isNotEmpty && totalText.isNotEmpty;
+  bool get _shouldShowText => showText || (currentText.isNotEmpty && totalText.isNotEmpty);
+
+  /// The text to display for current value.
+  String get _currentDisplay => currentText.isNotEmpty ? currentText : _formatNumber(current);
+
+  /// The text to display for total value.
+  String get _totalDisplay => totalText.isNotEmpty ? totalText : _formatNumber(total);
+
+  /// Format number with K/M suffix for large numbers.
+  static String _formatNumber(int value) {
+    if (value >= 1000000) {
+      return '${(value / 1000000).toStringAsFixed(1)}M';
+    } else if (value >= 1000) {
+      return '${(value / 1000).toStringAsFixed(1)}K';
+    }
+    return value.toString();
+  }
 
   static const double _heightLarge = 24;
   static const double _heightSmall = 8;
@@ -68,24 +88,24 @@ class LuckyProgressBar extends StatelessWidget {
           children: [
             Container(
               width: double.infinity,
-              height: showText ? _heightLarge : _heightSmall,
+              height: _shouldShowText ? _heightLarge : _heightSmall,
               decoration: BoxDecoration(
                 color: gray100,
-                borderRadius: showText ? radiusXl : radiusSm,
+                borderRadius: _shouldShowText ? radiusXl : radiusSm,
               ),
             ),
             Container(
               width: constraints.maxWidth * virtualProgress,
-              height: showText ? _heightLarge : _heightSmall,
+              height: _shouldShowText ? _heightLarge : _heightSmall,
               decoration: BoxDecoration(
                 color: blue,
-                borderRadius: showText ? radiusXl : radiusSm,
+                borderRadius: _shouldShowText ? radiusXl : radiusSm,
               ),
             ),
-            if (showText)
+            if (_shouldShowText)
               Center(
                 child: Text(
-                  '$currentText/$totalText',
+                  '$_currentDisplay/$_totalDisplay',
                   style: TextStyle(
                     color: textColor,
                     fontSize: textXs,
