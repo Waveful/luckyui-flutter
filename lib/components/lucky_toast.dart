@@ -107,6 +107,12 @@ class LuckyToastMessenger extends StatefulWidget {
     }
   }
 
+  /// Hides the currently visible toast, if any.
+  static void dismiss() {
+    _states["toast"]?._hideToast();
+    _states["notification"]?._hideToast();
+  }
+
   @override
   State<LuckyToastMessenger> createState() => LuckyToastMessengerState();
 }
@@ -294,5 +300,18 @@ class LuckyToastMessengerState extends State<LuckyToastMessenger> {
         }
       });
     }
+  }
+
+  void _hideToast() {
+    if (!mounted) return;
+    setState(() {
+      _snackbarVisible = false;
+      _onTap = null;
+      _title = null;
+      _text = '';
+      _widget = null;
+      _widgetHeight = null;
+      _widgetWidth = null;
+    });
   }
 }

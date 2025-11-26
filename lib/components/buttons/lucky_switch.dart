@@ -5,8 +5,11 @@ import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// A widget that displays a switch.
 class LuckySwitch extends StatefulWidget {
-  /// The initial value of the switch.
-  final bool initialValue;
+  /// The initial value of the switch (for uncontrolled mode).
+  final bool? initialValue;
+
+  /// The current value of the switch (for controlled mode).
+  final bool? value;
 
   /// The callback to be called when the switch is changed.
   final Function(bool) onChanged;
@@ -14,9 +17,11 @@ class LuckySwitch extends StatefulWidget {
   /// Creates a new [LuckySwitch] widget.
   const LuckySwitch({
     super.key,
-    required this.initialValue,
+    this.initialValue,
+    this.value,
     required this.onChanged,
-  });
+  }) : assert(initialValue != null || value != null,
+            'Either initialValue or value must be provided');
 
   @override
   State<LuckySwitch> createState() => _LuckySwitchState();
@@ -27,21 +32,31 @@ class _LuckySwitchState extends State<LuckySwitch> {
 
   @override
   void initState() {
-    _value = widget.initialValue;
+    _value = widget.value ?? widget.initialValue ?? false;
     super.initState();
   }
 
+  bool get _isControlled => widget.value != null;
+
+  bool get _currentValue => widget.value ?? _value;
+
   void _onChanged(bool newValue) {
-    setState(() {
-      _value = newValue;
-    });
-    widget.onChanged(newValue);
+    if (_isControlled) {
+      // Controlled mode: don't update local state, let parent decide
+      widget.onChanged(newValue);
+    } else {
+      // Uncontrolled mode: update local state then notify parent
+      setState(() {
+        _value = newValue;
+      });
+      widget.onChanged(newValue);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return LuckyTapAnimation(
-      onTap: () => _onChanged(!_value),
+      onTap: () => _onChanged(!_currentValue),
       pressedScale: 0.925,
       child: Stack(
         alignment: Alignment.centerLeft,
@@ -53,13 +68,13 @@ class _LuckySwitchState extends State<LuckySwitch> {
             width: 48,
             height: 24,
             decoration: BoxDecoration(
-              color: _value ? blue300 : context.luckyColors.n100,
+              color: _currentValue ? blue300 : context.luckyColors.n100,
               borderRadius: radius3xl,
             ),
           ),
           AnimatedPositioned(
             duration: normalDuration,
-            left: _value ? 24 : 0,
+            left: _currentValue ? 24 : 0,
             curve: Curves.easeIn,
             child: AnimatedContainer(
               duration: normalDuration,
@@ -67,7 +82,7 @@ class _LuckySwitchState extends State<LuckySwitch> {
               width: 24,
               height: 24,
               decoration: BoxDecoration(
-                color: _value ? blue : context.luckyColors.n300,
+                color: _currentValue ? blue : context.luckyColors.n300,
                 shape: BoxShape.circle,
               ),
             ),

@@ -19,6 +19,9 @@ class LuckyListItems extends StatelessWidget {
   /// Whether to show dividers between the list items.
   final bool showDividers;
 
+  /// Custom scroll physics for the list.
+  final ScrollPhysics? physics;
+
   /// Creates a new [LuckyListItems] widget.
   const LuckyListItems({
     super.key,
@@ -26,6 +29,7 @@ class LuckyListItems extends StatelessWidget {
     this.scrollable = true,
     this.shrinkWrap = false,
     this.showDividers = true,
+    this.physics,
   });
 
   @override
@@ -33,7 +37,7 @@ class LuckyListItems extends StatelessWidget {
     return ListView.builder(
       itemCount: items.length * 2 - 1, // Account for dividers
       shrinkWrap: shrinkWrap,
-      physics: scrollable ? null : const NeverScrollableScrollPhysics(),
+      physics: physics ?? (scrollable ? null : const NeverScrollableScrollPhysics()),
       itemBuilder: (BuildContext context, int index) {
         if (index.isOdd) {
           return showDividers
@@ -44,8 +48,10 @@ class LuckyListItems extends StatelessWidget {
         final LuckyListItemData item = items[itemIndex];
         return LuckyListItem(
           icon: item.icon,
+          nativeIcon: item.nativeIcon,
           text: item.text,
           onTap: item.onTap,
+          textColor: item.textColor,
           showTrailingArrow: item.showTrailingArrow,
         );
       },
@@ -67,6 +73,9 @@ class LuckyListItem extends StatelessWidget {
   /// The callback to be called when the list item is tapped.
   final VoidCallback onTap;
 
+  /// The color of the text and icon.
+  final Color? textColor;
+
   /// Whether to show a trailing arrow.
   final bool showTrailingArrow;
 
@@ -77,6 +86,7 @@ class LuckyListItem extends StatelessWidget {
     this.nativeIcon,
     required this.text,
     required this.onTap,
+    this.textColor,
     this.showTrailingArrow = true,
   }) : assert(icon != null || nativeIcon != null);
 
@@ -89,10 +99,10 @@ class LuckyListItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: spaceXs),
         child: Row(
           children: [
-            LuckyIcon(icon: icon, nativeIcon: nativeIcon, size: iconLg),
+            LuckyIcon(icon: icon, nativeIcon: nativeIcon, size: iconLg, color: textColor),
             const SizedBox(width: spaceMd),
             Expanded(
-              child: LuckyBody(text: text, fontWeight: semiBoldFontWeight),
+              child: LuckyBody(text: text, fontWeight: semiBoldFontWeight, color: textColor),
             ),
             if (showTrailingArrow)
               const LuckyIcon(
@@ -121,6 +131,9 @@ class LuckyListItemData {
   /// The callback to be called when the list item is tapped.
   final VoidCallback onTap;
 
+  /// The color of the text and icon.
+  final Color? textColor;
+
   /// Whether to show a trailing arrow.
   final bool showTrailingArrow;
 
@@ -130,6 +143,7 @@ class LuckyListItemData {
     this.nativeIcon,
     required this.text,
     required this.onTap,
+    this.textColor,
     this.showTrailingArrow = true,
   }) : assert(icon != null || nativeIcon != null);
 }
