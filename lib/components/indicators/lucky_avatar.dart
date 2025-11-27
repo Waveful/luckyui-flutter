@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:luckyui/animations/lucky_tap_animation.dart';
 import 'package:luckyui/components/indicators/lucky_icons.dart';
@@ -8,6 +10,9 @@ import 'package:luckyui/theme/lucky_tokens.dart';
 class LuckyAvatar extends StatelessWidget {
   /// The image to display in the avatar.
   final ImageProvider? image;
+
+  /// The image file to display in the avatar.
+  final File? imageFile;
 
   /// The letter to display in the avatar.
   final String? letter;
@@ -22,6 +27,7 @@ class LuckyAvatar extends StatelessWidget {
   const LuckyAvatar({
     super.key,
     this.image,
+    this.imageFile,
     this.letter,
     this.size = space5xl,
     this.onTap,
@@ -36,7 +42,9 @@ class LuckyAvatar extends StatelessWidget {
         height: size,
         decoration: BoxDecoration(color: blue, shape: BoxShape.circle),
         clipBehavior: Clip.antiAlias,
-        child: image != null
+        child: imageFile != null
+            ? Image.file(imageFile!)
+            : image != null
             ? Image(image: image!)
             : letter != null
             ? Center(
