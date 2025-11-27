@@ -10,6 +10,8 @@ import 'package:luckyui/theme/lucky_tokens.dart';
 ///
 /// By default, displays a circular avatar. Use [borderRadius] for
 /// rounded square avatars (e.g., for communities).
+///
+/// Content priority: [imageFile] > [image] > [letter] > [placeholder] > default icon
 class LuckyAvatar extends StatelessWidget {
   /// The image to display in the avatar.
   final ImageProvider? image;
@@ -32,6 +34,17 @@ class LuckyAvatar extends StatelessWidget {
   /// Use this for rounded square avatars (e.g., communities).
   final BorderRadius? borderRadius;
 
+  /// Custom placeholder widget when no image or letter is provided.
+  ///
+  /// If null, displays the default camera icon.
+  /// Use this for custom placeholders like "Add Photo" with icon.
+  final Widget? placeholder;
+
+  /// Background color for the avatar.
+  ///
+  /// Defaults to [blue].
+  final Color? backgroundColor;
+
   /// Creates a new [LuckyAvatar] widget.
   const LuckyAvatar({
     super.key,
@@ -41,6 +54,8 @@ class LuckyAvatar extends StatelessWidget {
     this.size = space5xl,
     this.onTap,
     this.borderRadius,
+    this.placeholder,
+    this.backgroundColor,
   });
 
   @override
@@ -53,30 +68,46 @@ class LuckyAvatar extends StatelessWidget {
         width: size,
         height: size,
         decoration: BoxDecoration(
-          color: blue,
+          color: backgroundColor ?? blue,
           shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
           borderRadius: isCircle ? null : borderRadius,
         ),
         clipBehavior: Clip.antiAlias,
-        child: imageFile != null
-            ? Image.file(imageFile!, fit: BoxFit.cover)
-            : image != null
-                ? Image(image: image!, fit: BoxFit.cover)
-                : letter != null
-                    ? Center(
-                        child: LuckyHeading(
-                          text: letter!,
-                          lineHeight: lineHeightNone,
-                          color: white,
-                        ),
-                      )
-                    : Center(
-                        child: LuckyIcon(
-                          icon: LuckyStrokeIcons.cameraSmile02,
-                          size: size * 0.5,
-                          color: white,
-                        ),
-                      ),
+        child: _buildContent(),
+      ),
+    );
+  }
+
+  Widget _buildContent() {
+    // Priority: imageFile > image > letter > placeholder > default icon
+    if (imageFile != null) {
+      return Image.file(imageFile!, fit: BoxFit.cover);
+    }
+
+    if (image != null) {
+      return Image(image: image!, fit: BoxFit.cover);
+    }
+
+    if (letter != null) {
+      return Center(
+        child: LuckyHeading(
+          text: letter!,
+          lineHeight: lineHeightNone,
+          color: white,
+        ),
+      );
+    }
+
+    if (placeholder != null) {
+      return Center(child: placeholder);
+    }
+
+    // Default: camera icon
+    return Center(
+      child: LuckyIcon(
+        icon: LuckyStrokeIcons.cameraSmile02,
+        size: size * 0.5,
+        color: white,
       ),
     );
   }
