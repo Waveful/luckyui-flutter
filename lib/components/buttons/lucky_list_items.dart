@@ -37,7 +37,8 @@ class LuckyListItems extends StatelessWidget {
     return ListView.builder(
       itemCount: items.length * 2 - 1, // Account for dividers
       shrinkWrap: shrinkWrap,
-      physics: physics ?? (scrollable ? null : const NeverScrollableScrollPhysics()),
+      physics:
+          physics ?? (scrollable ? null : const NeverScrollableScrollPhysics()),
       itemBuilder: (BuildContext context, int index) {
         if (index.isOdd) {
           return showDividers
@@ -99,10 +100,19 @@ class LuckyListItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: spaceXs),
         child: Row(
           children: [
-            LuckyIcon(icon: icon, nativeIcon: nativeIcon, size: iconLg, color: textColor),
+            LuckyIcon(
+              icon: icon,
+              nativeIcon: nativeIcon,
+              size: iconLg,
+              color: textColor,
+            ),
             const SizedBox(width: spaceMd),
             Expanded(
-              child: LuckyBody(text: text, fontWeight: semiBoldFontWeight, color: textColor),
+              child: LuckyBody(
+                text: text,
+                fontWeight: semiBoldFontWeight,
+                color: textColor,
+              ),
             ),
             if (showTrailingArrow)
               const LuckyIcon(

@@ -72,6 +72,7 @@ class LuckyModal extends StatelessWidget {
     required BuildContext context,
     required LuckyModalSizeEnum size,
     required Widget child,
+
     /// When true, the modal height wraps its content instead of using a fixed height.
     bool wrapContent = false,
   }) {

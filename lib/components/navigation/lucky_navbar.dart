@@ -54,6 +54,7 @@ class LuckyNavBarController extends ChangeNotifier {
 enum LuckyNavBarType {
   /// Standard navbar.
   standard,
+
   /// Compact navbar.
   compact,
 }

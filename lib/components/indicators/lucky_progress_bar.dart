@@ -32,13 +32,16 @@ class LuckyProgressBar extends StatelessWidget {
   double get progress => current / total;
 
   /// Whether the text should be shown in the progress bar.
-  bool get _shouldShowText => showText || (currentText.isNotEmpty && totalText.isNotEmpty);
+  bool get _shouldShowText =>
+      showText || (currentText.isNotEmpty && totalText.isNotEmpty);
 
   /// The text to display for current value.
-  String get _currentDisplay => currentText.isNotEmpty ? currentText : _formatNumber(current);
+  String get _currentDisplay =>
+      currentText.isNotEmpty ? currentText : _formatNumber(current);
 
   /// The text to display for total value.
-  String get _totalDisplay => totalText.isNotEmpty ? totalText : _formatNumber(total);
+  String get _totalDisplay =>
+      totalText.isNotEmpty ? totalText : _formatNumber(total);
 
   /// Format number with K/M suffix for large numbers.
   static String _formatNumber(int value) {

@@ -20,8 +20,10 @@ class LuckySwitch extends StatefulWidget {
     this.initialValue,
     this.value,
     required this.onChanged,
-  }) : assert(initialValue != null || value != null,
-            'Either initialValue or value must be provided');
+  }) : assert(
+         initialValue != null || value != null,
+         'Either initialValue or value must be provided',
+       );
 
   @override
   State<LuckySwitch> createState() => _LuckySwitchState();

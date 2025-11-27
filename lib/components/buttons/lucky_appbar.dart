@@ -133,7 +133,9 @@ class LuckyAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       automaticallyImplyLeading: false,
       leading: effectiveLeading,
-      leadingWidth: effectiveLeading != null ? (leadingWidth ?? (iconMd + spaceLg)) : 0,
+      leadingWidth: effectiveLeading != null
+          ? (leadingWidth ?? (iconMd + spaceLg))
+          : 0,
       centerTitle: centerTitle,
       elevation: 0,
       actions: actions,

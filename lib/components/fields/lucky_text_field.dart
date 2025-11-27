@@ -128,7 +128,9 @@ class _LuckyTextFieldState extends State<LuckyTextField> {
 
   /// Whether the text field has a title row (icon or title).
   bool get _hasTitleRow =>
-      widget.icon != null || _effectiveTitle.isNotEmpty || widget.subtitle != null;
+      widget.icon != null ||
+      _effectiveTitle.isNotEmpty ||
+      widget.subtitle != null;
 
   /// Whether to use the card style (has icon or subtitle).
   bool get _useCardStyle => widget.icon != null || widget.subtitle != null;
@@ -146,7 +148,8 @@ class _LuckyTextFieldState extends State<LuckyTextField> {
 
   /// Builds the simple style (original LuckyTextField style).
   Widget _buildSimpleStyle(BuildContext context) {
-    final int effectiveMaxLines = widget.maxLines ??
+    final int effectiveMaxLines =
+        widget.maxLines ??
         (widget.style == LuckyTextFieldStyleEnum.big ? 5 : 1);
 
     return Column(
@@ -213,7 +216,8 @@ class _LuckyTextFieldState extends State<LuckyTextField> {
 
   /// Builds the card style (with icon, subtitle support).
   Widget _buildCardStyle(BuildContext context) {
-    final int effectiveMaxLines = widget.maxLines ??
+    final int effectiveMaxLines =
+        widget.maxLines ??
         (widget.style == LuckyTextFieldStyleEnum.big ? 5 : 1);
 
     return Container(
