@@ -20,6 +20,9 @@ class LuckyNavBarItemData {
   /// The red dot counter of the navbar item.
   final int? counter;
 
+  /// Optional badge widget to display on the navbar item.
+  final Widget? badge;
+
   /// The callback to be called when the navbar item is tapped.
   final VoidCallback onTap;
 
@@ -29,6 +32,7 @@ class LuckyNavBarItemData {
     this.selectedIcon,
     this.text,
     this.counter,
+    this.badge,
     required this.onTap,
   });
 
@@ -50,6 +54,14 @@ class LuckyNavBarController extends ChangeNotifier {
   }
 }
 
+/// Enum for navbar types.
+enum LuckyNavBarType {
+  /// Standard navbar.
+  standard,
+  /// Compact navbar.
+  compact,
+}
+
 /// A widget that displays a navbar.
 class LuckyNavBar extends StatefulWidget {
   /// The controller that manages the selected navbar item.
@@ -58,8 +70,20 @@ class LuckyNavBar extends StatefulWidget {
   /// The list of navbar items to display.
   final List<LuckyNavBarItemData> items;
 
+  /// The theme mode for the navbar (for customizing appearance).
+  final ThemeMode? themeMode;
+
+  /// The type of navbar.
+  final LuckyNavBarType type;
+
   /// Creates a new [LuckyNavBar] widget.
-  const LuckyNavBar({super.key, required this.controller, required this.items});
+  const LuckyNavBar({
+    super.key,
+    required this.controller,
+    required this.items,
+    this.themeMode,
+    this.type = LuckyNavBarType.standard,
+  });
 
   @override
   State<LuckyNavBar> createState() => _LuckyNavBarState();

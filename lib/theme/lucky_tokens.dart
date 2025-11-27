@@ -56,6 +56,12 @@ const Color accentBlue = Color(0xFF535AFF);
 /// The red color.
 const Color red = Color(0xFFEC003F);
 
+/// The green color.
+const Color green = Color(0xFF10B981);
+
+/// The orange color.
+const Color orange = Color(0xFFF97316);
+
 // Border radius
 /// The radius of the xs border radius.
 final BorderRadius radiusXs = BorderRadius.circular(2.0);

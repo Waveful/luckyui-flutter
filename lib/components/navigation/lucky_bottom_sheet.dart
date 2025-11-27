@@ -10,6 +10,7 @@ class LuckyBottomSheet extends StatelessWidget {
     required BuildContext context,
     required List<Widget> children,
     bool showClose = true,
+    bool expanded = false,
     EdgeInsetsGeometry padding = const EdgeInsets.symmetric(
       horizontal: spaceMd,
     ),
@@ -17,6 +18,7 @@ class LuckyBottomSheet extends StatelessWidget {
     return showModalBottomSheet<T?>(
       context: context,
       useSafeArea: true,
+      isScrollControlled: expanded,
       scrollControlDisabledMaxHeightRatio: 1.0,
       shape: RoundedRectangleBorder(
         borderRadius: radius2xl.copyWith(
