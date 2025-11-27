@@ -7,6 +7,9 @@ import 'package:luckyui/components/typography/lucky_heading.dart';
 import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// A widget that displays an avatar.
+///
+/// By default, displays a circular avatar. Use [borderRadius] for
+/// rounded square avatars (e.g., for communities).
 class LuckyAvatar extends StatelessWidget {
   /// The image to display in the avatar.
   final ImageProvider? image;
@@ -23,6 +26,12 @@ class LuckyAvatar extends StatelessWidget {
   /// The callback to be called when the avatar is tapped.
   final VoidCallback? onTap;
 
+  /// Custom border radius for the avatar.
+  ///
+  /// If null, displays as a circle.
+  /// Use this for rounded square avatars (e.g., communities).
+  final BorderRadius? borderRadius;
+
   /// Creates a new [LuckyAvatar] widget.
   const LuckyAvatar({
     super.key,
@@ -31,36 +40,43 @@ class LuckyAvatar extends StatelessWidget {
     this.letter,
     this.size = space5xl,
     this.onTap,
+    this.borderRadius,
   });
 
   @override
   Widget build(BuildContext context) {
+    final isCircle = borderRadius == null;
+
     return LuckyTapAnimation(
       onTap: onTap,
       child: Container(
         width: size,
         height: size,
-        decoration: BoxDecoration(color: blue, shape: BoxShape.circle),
+        decoration: BoxDecoration(
+          color: blue,
+          shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
+          borderRadius: isCircle ? null : borderRadius,
+        ),
         clipBehavior: Clip.antiAlias,
         child: imageFile != null
-            ? Image.file(imageFile!)
+            ? Image.file(imageFile!, fit: BoxFit.cover)
             : image != null
-            ? Image(image: image!)
-            : letter != null
-            ? Center(
-                child: LuckyHeading(
-                  text: letter!,
-                  lineHeight: lineHeightNone,
-                  color: white,
-                ),
-              )
-            : Center(
-                child: LuckyIcon(
-                  icon: LuckyStrokeIcons.cameraSmile02,
-                  size: size * 0.5,
-                  color: white,
-                ),
-              ),
+                ? Image(image: image!, fit: BoxFit.cover)
+                : letter != null
+                    ? Center(
+                        child: LuckyHeading(
+                          text: letter!,
+                          lineHeight: lineHeightNone,
+                          color: white,
+                        ),
+                      )
+                    : Center(
+                        child: LuckyIcon(
+                          icon: LuckyStrokeIcons.cameraSmile02,
+                          size: size * 0.5,
+                          color: white,
+                        ),
+                      ),
       ),
     );
   }
