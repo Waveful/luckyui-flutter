@@ -42,10 +42,12 @@ extension LuckyToastTypeEnumExtension on LuckyToastTypeEnum {
 /// A widget that displays a toast message.
 class LuckyToastMessenger extends StatefulWidget {
   /// The type of the toast messenger.
+  /// Defaults to "toast" for bottom-aligned toasts.
+  /// Use "notification" for top-aligned notifications.
   final String type;
 
   /// Creates a new [LuckyToastMessenger] widget.
-  const LuckyToastMessenger({super.key, required this.type});
+  const LuckyToastMessenger({super.key, this.type = "toast"});
 
   /// The state of the toast messengers.
   static final Map<String, LuckyToastMessengerState> _states = {};
