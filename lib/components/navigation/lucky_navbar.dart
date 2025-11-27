@@ -20,9 +20,6 @@ class LuckyNavBarItemData {
   /// The red dot counter of the navbar item.
   final int? counter;
 
-  /// Optional badge widget to display on the navbar item.
-  final Widget? badge;
-
   /// The callback to be called when the navbar item is tapped.
   final VoidCallback onTap;
 
@@ -32,7 +29,6 @@ class LuckyNavBarItemData {
     this.selectedIcon,
     this.text,
     this.counter,
-    this.badge,
     required this.onTap,
   });
 
