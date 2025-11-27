@@ -60,14 +60,23 @@ class LuckyToastMessenger extends StatefulWidget {
     /// The title to display in the toast.
     String? title,
 
-    /// The widget to display in the toast.
+    /// The text style for the title.
+    TextStyle? titleTextStyle,
+
+    /// The widget to display in the toast (alias: leading).
     Widget? widget,
 
     /// The height of the widget. Mandatory if widget is provided to compute the toast height.
     double? widgetHeight,
 
-    /// The width of the widget. Mandatory if widget is provided to compute the toast height.
+    /// The width of the widget. Mandatory if widget is provided to compute the toast width (alias: leadingWidth).
     double? widgetWidth,
+
+    /// Leading widget to display before the text (alias for widget).
+    Widget? leading,
+
+    /// Width of the leading widget (alias for widgetWidth).
+    double? leadingWidth,
 
     /// The callback to be called when the toast is tapped.
     VoidCallback? onTap,
@@ -78,9 +87,13 @@ class LuckyToastMessenger extends StatefulWidget {
     /// The alignment of the toast.
     LuckyToastAlignmentEnum alignment = LuckyToastAlignmentEnum.bottom,
   }) {
-    if (widget != null && (widgetHeight == null || widgetWidth == null)) {
+    // Support both widget/widgetWidth and leading/leadingWidth parameter names
+    final Widget? effectiveWidget = widget ?? leading;
+    final double? effectiveWidgetWidth = widgetWidth ?? leadingWidth;
+
+    if (effectiveWidget != null && effectiveWidgetWidth == null) {
       throw Exception(
-        "Widget height and width are mandatory if widget is provided.",
+        "Widget width (widgetWidth or leadingWidth) is mandatory if widget/leading is provided.",
       );
     }
 
@@ -88,9 +101,10 @@ class LuckyToastMessenger extends StatefulWidget {
       _states["notification"]?._showToast(
         text,
         title,
-        widget,
+        titleTextStyle,
+        effectiveWidget,
         widgetHeight,
-        widgetWidth,
+        effectiveWidgetWidth,
         onTap,
         type.duration,
         alignment,
@@ -99,9 +113,10 @@ class LuckyToastMessenger extends StatefulWidget {
       _states["toast"]?._showToast(
         text,
         title,
-        widget,
+        titleTextStyle,
+        effectiveWidget,
         widgetHeight,
-        widgetWidth,
+        effectiveWidgetWidth,
         onTap,
         type.duration,
         alignment,
@@ -124,6 +139,7 @@ class LuckyToastMessengerState extends State<LuckyToastMessenger> {
   bool _snackbarVisible = false;
   String _text = "";
   String? _title;
+  TextStyle? _titleTextStyle;
   Widget? _widget;
   double? _widgetHeight;
   double? _widgetWidth;
@@ -242,11 +258,13 @@ class LuckyToastMessengerState extends State<LuckyToastMessenger> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             if (_title != null)
-                              LuckyHeading(
-                                text: _title!,
-                                fontSize: textLg,
-                                lineHeight: lineHeightLg,
-                              ),
+                              _titleTextStyle != null
+                                  ? Text(_title!, style: _titleTextStyle)
+                                  : LuckyHeading(
+                                      text: _title!,
+                                      fontSize: textLg,
+                                      lineHeight: lineHeightLg,
+                                    ),
                             LuckyBody(text: _text),
                           ],
                         ),
@@ -265,6 +283,7 @@ class LuckyToastMessengerState extends State<LuckyToastMessenger> {
   Future<void> _showToast(
     String text,
     String? title,
+    TextStyle? titleTextStyle,
     Widget? widget,
     double? widgetHeight,
     double? widgetWidth,
@@ -287,6 +306,7 @@ class LuckyToastMessengerState extends State<LuckyToastMessenger> {
         _snackbarVisible = true;
         _text = text;
         _title = title;
+        _titleTextStyle = titleTextStyle;
         _widget = widget;
         _widgetHeight = widgetHeight;
         _widgetWidth = widgetWidth;
@@ -310,6 +330,7 @@ class LuckyToastMessengerState extends State<LuckyToastMessenger> {
       _snackbarVisible = false;
       _onTap = null;
       _title = null;
+      _titleTextStyle = null;
       _text = '';
       _widget = null;
       _widgetHeight = null;
