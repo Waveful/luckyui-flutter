@@ -94,6 +94,12 @@ class LuckyAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// The text style for the title.
   final TextStyle? titleTextStyle;
 
+  /// Whether to automatically imply a leading widget (back button).
+  /// When true and no leading widget is provided, a back button will be shown
+  /// if the navigator can pop. When false, no automatic leading is shown.
+  /// Defaults to true.
+  final bool automaticallyImplyLeading;
+
   /// Creates a new [LuckyAppBar] widget.
   const LuckyAppBar({
     super.key,
@@ -106,20 +112,28 @@ class LuckyAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leadingColor,
     this.leadingWidth,
     this.titleTextStyle,
+    this.automaticallyImplyLeading = true,
   });
 
   @override
   Widget build(BuildContext context) {
+    // Determine leading widget based on automaticallyImplyLeading
+    Widget? effectiveLeading;
+    if (leading != null) {
+      effectiveLeading = leading;
+    } else if (automaticallyImplyLeading) {
+      effectiveLeading = LuckyIconButton(
+        nativeIcon: Icons.arrow_back_ios_rounded,
+        onTap: () => Navigator.maybePop(context),
+        size: iconMd,
+        color: leadingColor ?? context.luckyColors.onSurface,
+      );
+    }
+
     return AppBar(
-      leading:
-          leading ??
-          LuckyIconButton(
-            nativeIcon: Icons.arrow_back_ios_rounded,
-            onTap: () => Navigator.maybePop(context),
-            size: iconMd,
-            color: leadingColor ?? context.luckyColors.onSurface,
-          ),
-      leadingWidth: leadingWidth ?? (iconMd + spaceLg),
+      automaticallyImplyLeading: false,
+      leading: effectiveLeading,
+      leadingWidth: effectiveLeading != null ? (leadingWidth ?? (iconMd + spaceLg)) : 0,
       centerTitle: centerTitle,
       elevation: 0,
       actions: actions,
