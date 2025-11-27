@@ -1,3 +1,6 @@
+## 1.0.2
+Implement missing parameters for various components.
+
 ## 1.0.1
 Small README change.
 
