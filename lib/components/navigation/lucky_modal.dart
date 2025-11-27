@@ -72,6 +72,8 @@ class LuckyModal extends StatelessWidget {
     required BuildContext context,
     required LuckyModalSizeEnum size,
     required Widget child,
+    /// When true, the modal height wraps its content instead of using a fixed height.
+    bool wrapContent = false,
   }) {
     return showDialog<T?>(
       context: context,
@@ -80,7 +82,7 @@ class LuckyModal extends StatelessWidget {
       useSafeArea: size == LuckyModalSizeEnum.full ? false : true,
       builder: (BuildContext context) => LuckyModal(
         width: size.width(context),
-        height: size.height(context),
+        height: wrapContent ? null : size.height(context),
         child: child,
       ),
     );

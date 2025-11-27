@@ -64,16 +64,18 @@ class _LuckyShowcasePageState extends State<LuckyShowcasePage> {
 /// A widget that displays the LuckyUI showcase.
 class LuckyShowcase extends StatefulWidget {
   /// The theme mode of the showcase.
+  /// Defaults to [ThemeMode.system] if not provided.
   final ThemeMode themeMode;
 
   /// The callback to be called when the theme mode is changed.
-  final Function(ThemeMode) onThemeModeChanged;
+  /// Optional - if not provided, theme changes are ignored.
+  final Function(ThemeMode)? onThemeModeChanged;
 
   /// Creates a new [LuckyShowcase] widget.
   const LuckyShowcase({
     super.key,
-    required this.themeMode,
-    required this.onThemeModeChanged,
+    this.themeMode = ThemeMode.system,
+    this.onThemeModeChanged,
   });
 
   @override
@@ -1179,7 +1181,7 @@ class _LuckyShowcaseState extends State<LuckyShowcase>
                       final ThemeMode newThemeMode = value
                           ? ThemeMode.light
                           : ThemeMode.dark;
-                      widget.onThemeModeChanged(newThemeMode);
+                      widget.onThemeModeChanged?.call(newThemeMode);
                     },
                   ),
                   LuckyIcon(
