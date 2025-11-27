@@ -38,6 +38,12 @@ class LuckyButton extends StatelessWidget {
   /// The style of the button.
   final LuckyButtonStyleEnum style;
 
+  /// Custom border radius for the button.
+  final BorderRadius? borderRadius;
+
+  /// Custom height for the button.
+  final double? height;
+
   /// Creates a new [LuckyButton] widget.
   const LuckyButton({
     super.key,
@@ -47,6 +53,8 @@ class LuckyButton extends StatelessWidget {
     this.disabled = false,
     this.expanded = true,
     this.style = LuckyButtonStyleEnum.primary,
+    this.borderRadius,
+    this.height,
   });
 
   @override
@@ -73,13 +81,14 @@ class LuckyButton extends StatelessWidget {
         duration: fastDuration,
         curve: Curves.easeIn,
         width: expanded ? double.infinity : null,
+        height: height,
         padding: EdgeInsets.symmetric(
           horizontal: spaceMd,
           vertical: expanded ? spaceMd : spaceSm,
         ),
         decoration: BoxDecoration(
           color: disabled ? disabledColor : enabledColor,
-          borderRadius: radius4xl,
+          borderRadius: borderRadius ?? radius4xl,
           border: style == LuckyButtonStyleEnum.secondary
               ? Border.all(color: context.luckyColors.n100)
               : Border.all(color: Colors.transparent),

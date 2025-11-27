@@ -88,6 +88,12 @@ class LuckyAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// The color of the leading widget.
   final Color? leadingColor;
 
+  /// The width of the leading widget area.
+  final double? leadingWidth;
+
+  /// The text style for the title.
+  final TextStyle? titleTextStyle;
+
   /// Creates a new [LuckyAppBar] widget.
   const LuckyAppBar({
     super.key,
@@ -98,6 +104,8 @@ class LuckyAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.actions,
     this.leading,
     this.leadingColor,
+    this.leadingWidth,
+    this.titleTextStyle,
   });
 
   @override
@@ -111,12 +119,13 @@ class LuckyAppBar extends StatelessWidget implements PreferredSizeWidget {
             size: iconMd,
             color: leadingColor ?? context.luckyColors.onSurface,
           ),
-      leadingWidth: iconMd + spaceLg,
+      leadingWidth: leadingWidth ?? (iconMd + spaceLg),
       centerTitle: centerTitle,
       elevation: 0,
       actions: actions,
       actionsPadding: const EdgeInsets.only(right: spaceSm),
       backgroundColor: backgroundColor ?? context.luckyColors.surface,
+      titleTextStyle: titleTextStyle,
       title:
           titleWidget ??
           (title != null
