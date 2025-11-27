@@ -6,17 +6,22 @@ import 'package:luckyui/theme/lucky_tokens.dart';
 /// A widget that displays a bottom sheet.
 class LuckyBottomSheet extends StatelessWidget {
   /// Shows a bottom sheet.
+  ///
+  /// Set [useRootNavigator] to true to display the bottom sheet above
+  /// all other navigators (e.g., above a bottom navigation bar).
   static Future<T?> show<T>({
     required BuildContext context,
     required List<Widget> children,
     bool showClose = true,
     bool expanded = false,
+    bool useRootNavigator = true,
     EdgeInsetsGeometry padding = const EdgeInsets.symmetric(
       horizontal: spaceMd,
     ),
   }) {
     return showModalBottomSheet<T?>(
       context: context,
+      useRootNavigator: useRootNavigator,
       useSafeArea: true,
       isScrollControlled: expanded,
       scrollControlDisabledMaxHeightRatio: 1.0,
