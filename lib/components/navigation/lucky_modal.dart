@@ -201,7 +201,7 @@ class LuckyModal extends StatelessWidget {
                       Expanded(
                         child: LuckyTextButton(
                           text: "Cancel",
-                          onTap: () => Navigator.pop(context),
+                          onTap: () => Navigator.pop(context, false),
                           color: black,
                           fontWeight: normalFontWeight,
                           textAlign: TextAlign.end,
@@ -211,7 +211,7 @@ class LuckyModal extends StatelessWidget {
                         child: LuckyTextButton(
                           text: "Confirm",
                           color: red,
-                          onTap: () => Navigator.pop(context),
+                          onTap: () => Navigator.pop(context, true),
                           textAlign: TextAlign.end,
                         ),
                       ),
