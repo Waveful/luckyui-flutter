@@ -38,7 +38,11 @@ class LuckyBottomSheet extends StatelessWidget {
       backgroundColor: backgroundColor ?? context.luckyColors.surfaceTint,
       barrierColor: black.withAlpha(200),
       builder: (context) {
-        return LuckyBottomSheet(padding: padding, children: children);
+        return LuckyBottomSheet(
+          padding: padding,
+          children: children,
+          showClose: showClose,
+        );
       },
     );
   }
