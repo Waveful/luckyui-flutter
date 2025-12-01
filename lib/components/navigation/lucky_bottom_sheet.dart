@@ -9,6 +9,9 @@ class LuckyBottomSheet extends StatelessWidget {
   ///
   /// Set [useRootNavigator] to true to display the bottom sheet above
   /// all other navigators (e.g., above a bottom navigation bar).
+  ///
+  /// Set [backgroundColor] to override the default background color
+  /// (defaults to [LuckyColors.surfaceTint]).
   static Future<T?> show<T>({
     required BuildContext context,
     required List<Widget> children,
@@ -18,6 +21,7 @@ class LuckyBottomSheet extends StatelessWidget {
     EdgeInsetsGeometry padding = const EdgeInsets.symmetric(
       horizontal: spaceMd,
     ),
+    Color? backgroundColor,
   }) {
     return showModalBottomSheet<T?>(
       context: context,
@@ -31,7 +35,7 @@ class LuckyBottomSheet extends StatelessWidget {
           bottomRight: Radius.zero,
         ),
       ),
-      backgroundColor: context.luckyColors.surfaceTint,
+      backgroundColor: backgroundColor ?? context.luckyColors.surfaceTint,
       barrierColor: black.withAlpha(200),
       builder: (context) {
         return LuckyBottomSheet(padding: padding, children: children);
