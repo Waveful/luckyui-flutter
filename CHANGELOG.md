@@ -1,3 +1,6 @@
+## 1.0.3
+Small fixes for LuckyBottomSheet.
+
 ## 1.0.2
 Implement missing parameters for various components.
 
