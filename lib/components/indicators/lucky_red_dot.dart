@@ -25,7 +25,7 @@ class LuckyRedDot extends StatelessWidget {
           horizontal: spaceXs,
           vertical: spaceXxs,
         ),
-        decoration: BoxDecoration(color: red, borderRadius: radiusMd),
+        decoration: BoxDecoration(color: red, borderRadius: radiusFull),
         child: Text(
           counter.toString(),
           style: const TextStyle(
