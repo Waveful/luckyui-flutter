@@ -23,6 +23,9 @@ class LuckyNavBarItemData {
   /// The callback to be called when the navbar item is tapped.
   final VoidCallback onTap;
 
+  /// The callback to be called when the navbar item is long pressed.
+  final VoidCallback? onLongPress;
+
   /// Whether the navbar item is a special item.
   const LuckyNavBarItemData({
     required this.icon,
@@ -30,6 +33,7 @@ class LuckyNavBarItemData {
     this.text,
     this.counter,
     required this.onTap,
+    this.onLongPress,
   });
 
   /// Whether the navbar item is a special item.
@@ -102,7 +106,7 @@ class _LuckyNavBarState extends State<LuckyNavBar> {
           children: [
             ...widget.items.map((item) {
               if (item.specialItem) {
-                return LuckyNavBarMainItem(icon: item.icon, onTap: item.onTap);
+                return LuckyNavBarMainItem(icon: item.icon, onTap: item.onTap, onLongPress: item.onLongPress);
               } else {
                 return LuckyNavBarItem(
                   icon: item.icon,
@@ -117,6 +121,7 @@ class _LuckyNavBarState extends State<LuckyNavBar> {
                     );
                     item.onTap();
                   },
+                  onLongPress: item.onLongPress,
                   selected: _selectedIndex == widget.items.indexOf(item),
                 );
               }
@@ -136,11 +141,15 @@ class LuckyNavBarMainItem extends StatelessWidget {
   /// The callback to be called when the main navbar item is tapped.
   final VoidCallback onTap;
 
+  /// The callback to be called when the main navbar item is long pressed.
+  final VoidCallback? onLongPress;
+
   /// Creates a new [LuckyNavBarMainItem] widget.
   const LuckyNavBarMainItem({
     super.key,
     required this.icon,
     required this.onTap,
+    this.onLongPress,
   });
 
   @override
@@ -152,6 +161,7 @@ class LuckyNavBarMainItem extends StatelessWidget {
         children: [
           LuckyTapAnimation(
             onTap: onTap,
+            onLongPress: onLongPress,
             pressedScale: 0.95,
             child: Container(
               padding: const EdgeInsets.symmetric(
@@ -186,6 +196,9 @@ class LuckyNavBarItem extends StatelessWidget {
   /// The callback to be called when the navbar item is tapped.
   final VoidCallback onTap;
 
+  /// The callback to be called when the navbar item is long pressed.
+  final VoidCallback? onLongPress;
+
   /// Whether the navbar item is selected.
   final bool selected;
 
@@ -197,6 +210,7 @@ class LuckyNavBarItem extends StatelessWidget {
     required this.text,
     this.counter,
     required this.onTap,
+    this.onLongPress,
     required this.selected,
   });
 
@@ -205,6 +219,7 @@ class LuckyNavBarItem extends StatelessWidget {
     return Expanded(
       child: LuckyTapAnimation(
         onTap: onTap,
+        onLongPress: onLongPress,
         pressedScale: 0.95,
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: spaceXs),
