@@ -40,8 +40,8 @@ class LuckyBottomSheet extends StatelessWidget {
       builder: (context) {
         return LuckyBottomSheet(
           padding: padding,
-          children: children,
           showClose: showClose,
+          children: children,
         );
       },
     );
