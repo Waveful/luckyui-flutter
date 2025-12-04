@@ -38,7 +38,19 @@ class _LuckyTabBarState extends State<LuckyTabBar> {
   @override
   void initState() {
     super.initState();
-    widget.tabController.addListener(() => setState(() {}));
+    widget.tabController.addListener(_updateState);
+  }
+
+  @override
+  void dispose() {
+    widget.tabController.removeListener(_updateState);
+    super.dispose();
+  }
+
+  void _updateState() {
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
