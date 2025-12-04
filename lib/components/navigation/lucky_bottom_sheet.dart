@@ -12,6 +12,9 @@ class LuckyBottomSheet extends StatelessWidget {
   ///
   /// Set [backgroundColor] to override the default background color
   /// (defaults to [LuckyColors.surfaceTint]).
+  ///
+  /// Set [borderRadius] to override the default border radius
+  /// (defaults to [radius3xl]).
   static Future<T?> show<T>({
     required BuildContext context,
     required List<Widget> children,
@@ -21,6 +24,7 @@ class LuckyBottomSheet extends StatelessWidget {
     EdgeInsetsGeometry padding = const EdgeInsets.symmetric(
       horizontal: spaceMd,
     ),
+    BorderRadiusGeometry? borderRadius,
     Color? backgroundColor,
   }) {
     return showModalBottomSheet<T?>(
@@ -30,7 +34,7 @@ class LuckyBottomSheet extends StatelessWidget {
       isScrollControlled: expanded,
       scrollControlDisabledMaxHeightRatio: 1.0,
       shape: RoundedRectangleBorder(
-        borderRadius: radius2xl.copyWith(
+        borderRadius: borderRadius ?? radius3xl.copyWith(
           bottomLeft: Radius.zero,
           bottomRight: Radius.zero,
         ),
