@@ -6,6 +6,9 @@ class LuckyTapAnimation extends StatefulWidget {
   /// The callback to be called when the widget is tapped.
   final VoidCallback? onTap;
 
+  /// The callback to be called when the widget is long pressed.
+  final VoidCallback? onLongPress;
+
   /// A notifier to control the animation state.
   final ValueNotifier<bool>? animationNotifier;
 
@@ -22,6 +25,7 @@ class LuckyTapAnimation extends StatefulWidget {
   const LuckyTapAnimation({
     super.key,
     this.onTap,
+    this.onLongPress,
     this.animationNotifier,
     this.pressedScale,
     this.hitTestBehavior = HitTestBehavior.opaque,
@@ -81,6 +85,7 @@ class _LuckyTapAnimationState extends State<LuckyTapAnimation> {
         child: GestureDetector(
           behavior: widget.hitTestBehavior,
           onTap: widget.onTap,
+          onLongPress: widget.onLongPress,
           child: widget.child,
         ),
       ),
