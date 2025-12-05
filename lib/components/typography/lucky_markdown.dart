@@ -22,7 +22,10 @@ class LuckyMarkdown extends StatelessWidget {
       config: MarkdownConfig(
         configs: [
           LinkConfig(
-            style: TextStyle(color: context.luckyColors.primaryColor, decoration: TextDecoration.none),
+            style: TextStyle(
+              color: context.luckyColors.primaryColor,
+              decoration: TextDecoration.none,
+            ),
             onTap: onLinkTap,
           ),
         ],

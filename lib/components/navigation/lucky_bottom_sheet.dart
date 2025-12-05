@@ -34,10 +34,12 @@ class LuckyBottomSheet extends StatelessWidget {
       isScrollControlled: expanded,
       scrollControlDisabledMaxHeightRatio: 1.0,
       shape: RoundedRectangleBorder(
-        borderRadius: borderRadius ?? radius3xl.copyWith(
-          bottomLeft: Radius.zero,
-          bottomRight: Radius.zero,
-        ),
+        borderRadius:
+            borderRadius ??
+            radius3xl.copyWith(
+              bottomLeft: Radius.zero,
+              bottomRight: Radius.zero,
+            ),
       ),
       backgroundColor: backgroundColor ?? context.luckyColors.surfaceTint,
       barrierColor: black.withAlpha(200),

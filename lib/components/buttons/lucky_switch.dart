@@ -70,7 +70,9 @@ class _LuckySwitchState extends State<LuckySwitch> {
             width: 48,
             height: 24,
             decoration: BoxDecoration(
-              color: _currentValue ? context.luckyColors.primaryColor300 : context.luckyColors.n100,
+              color: _currentValue
+                  ? context.luckyColors.primaryColor300
+                  : context.luckyColors.n100,
               borderRadius: radius3xl,
             ),
           ),
@@ -84,7 +86,9 @@ class _LuckySwitchState extends State<LuckySwitch> {
               width: 24,
               height: 24,
               decoration: BoxDecoration(
-                color: _currentValue ? context.luckyColors.primaryColor : context.luckyColors.n300,
+                color: _currentValue
+                    ? context.luckyColors.primaryColor
+                    : context.luckyColors.n300,
                 shape: BoxShape.circle,
               ),
             ),

@@ -106,7 +106,11 @@ class _LuckyNavBarState extends State<LuckyNavBar> {
           children: [
             ...widget.items.map((item) {
               if (item.specialItem) {
-                return LuckyNavBarMainItem(icon: item.icon, onTap: item.onTap, onLongPress: item.onLongPress);
+                return LuckyNavBarMainItem(
+                  icon: item.icon,
+                  onTap: item.onTap,
+                  onLongPress: item.onLongPress,
+                );
               } else {
                 return LuckyNavBarItem(
                   icon: item.icon,
@@ -169,7 +173,10 @@ class LuckyNavBarMainItem extends StatelessWidget {
                 vertical: spaceXs,
               ),
               margin: const EdgeInsets.only(bottom: textXs * 0.5),
-              decoration: BoxDecoration(color: context.luckyColors.primaryColor, borderRadius: radius2xl),
+              decoration: BoxDecoration(
+                color: context.luckyColors.primaryColor,
+                borderRadius: radius2xl,
+              ),
               child: LuckyIcon(icon: icon, size: iconLg, color: white),
             ),
           ),

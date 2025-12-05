@@ -51,7 +51,9 @@ class _LuckyShowcasePageState extends State<LuckyShowcasePage> {
       darkTheme: LuckyTheme.darkTheme,
       home: Builder(
         builder: (context) => CupertinoTheme(
-          data: CupertinoThemeData(primaryColor: context.luckyColors.primaryColor),
+          data: CupertinoThemeData(
+            primaryColor: context.luckyColors.primaryColor,
+          ),
           child: LuckyShowcase(
             themeMode: _themeMode,
             onThemeModeChanged: (themeMode) =>
