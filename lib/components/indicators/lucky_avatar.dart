@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:luckyui/animations/lucky_tap_animation.dart';
 import 'package:luckyui/components/indicators/lucky_icons.dart';
 import 'package:luckyui/components/typography/lucky_heading.dart';
+import 'package:luckyui/theme/lucky_colors.dart';
 import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// A widget that displays an avatar.
@@ -42,7 +43,7 @@ class LuckyAvatar extends StatelessWidget {
 
   /// Background color for the avatar.
   ///
-  /// Defaults to [blue].
+  /// Defaults to primary color from theme.
   final Color? backgroundColor;
 
   /// Creates a new [LuckyAvatar] widget.
@@ -68,7 +69,7 @@ class LuckyAvatar extends StatelessWidget {
         width: size,
         height: size,
         decoration: BoxDecoration(
-          color: backgroundColor ?? blue,
+          color: backgroundColor ?? context.luckyColors.primaryColor,
           shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
           borderRadius: isCircle ? null : borderRadius,
         ),

@@ -169,7 +169,7 @@ class LuckyNavBarMainItem extends StatelessWidget {
                 vertical: spaceXs,
               ),
               margin: const EdgeInsets.only(bottom: textXs * 0.5),
-              decoration: BoxDecoration(color: blue, borderRadius: radius2xl),
+              decoration: BoxDecoration(color: context.luckyColors.primaryColor, borderRadius: radius2xl),
               child: LuckyIcon(icon: icon, size: iconLg, color: white),
             ),
           ),

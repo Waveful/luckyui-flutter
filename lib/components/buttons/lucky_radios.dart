@@ -121,7 +121,7 @@ class LuckyRadio extends StatelessWidget {
                             width: 1.5,
                           )
                         : null,
-                    color: selected ? blue : null,
+                    color: selected ? context.luckyColors.primaryColor : null,
                     shape: BoxShape.circle,
                   ),
                 ),

@@ -49,12 +49,14 @@ class _LuckyShowcasePageState extends State<LuckyShowcasePage> {
       themeMode: _themeMode,
       theme: LuckyTheme.lightTheme,
       darkTheme: LuckyTheme.darkTheme,
-      home: CupertinoTheme(
-        data: const CupertinoThemeData(primaryColor: blue),
-        child: LuckyShowcase(
-          themeMode: _themeMode,
-          onThemeModeChanged: (themeMode) =>
-              setState(() => _themeMode = themeMode),
+      home: Builder(
+        builder: (context) => CupertinoTheme(
+          data: CupertinoThemeData(primaryColor: context.luckyColors.primaryColor),
+          child: LuckyShowcase(
+            themeMode: _themeMode,
+            onThemeModeChanged: (themeMode) =>
+                setState(() => _themeMode = themeMode),
+          ),
         ),
       ),
     );

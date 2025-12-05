@@ -42,7 +42,7 @@ class LuckySearchBar extends StatelessWidget {
           Expanded(
             child: TextField(
               controller: controller,
-              cursorColor: blue,
+              cursorColor: context.luckyColors.primaryColor,
               style: TextStyle(
                 color: context.luckyColors.onSurface,
                 fontSize: textBase,

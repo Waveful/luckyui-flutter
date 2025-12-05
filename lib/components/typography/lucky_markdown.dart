@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:luckyui/luckyui.dart';
+import 'package:luckyui/theme/lucky_colors.dart';
 import 'package:markdown_widget/markdown_widget.dart';
 
 /// A widget that displays a markdown text.
@@ -21,7 +22,7 @@ class LuckyMarkdown extends StatelessWidget {
       config: MarkdownConfig(
         configs: [
           LinkConfig(
-            style: TextStyle(color: blue, decoration: TextDecoration.none),
+            style: TextStyle(color: context.luckyColors.primaryColor, decoration: TextDecoration.none),
             onTap: onLinkTap,
           ),
         ],

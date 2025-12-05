@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luckyui/theme/lucky_colors.dart';
 import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// A widget that displays a progress bar.
@@ -101,7 +102,7 @@ class LuckyProgressBar extends StatelessWidget {
               width: constraints.maxWidth * virtualProgress,
               height: _shouldShowText ? _heightLarge : _heightSmall,
               decoration: BoxDecoration(
-                color: blue,
+                color: context.luckyColors.primaryColor,
                 borderRadius: _shouldShowText ? radiusXl : radiusSm,
               ),
             ),

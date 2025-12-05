@@ -5,7 +5,7 @@ import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// An enumeration of button styles.
 enum LuckyButtonStyleEnum {
-  /// [primary] - A primary button with a blue background and white text.
+  /// [primary] - A primary button with a primary color background and white text.
   primary,
 
   /// [primaryAlternative] - A primary alternative button with a onSurface background and surface text.
@@ -60,14 +60,14 @@ class LuckyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Color enabledColor = style == LuckyButtonStyleEnum.primary
-        ? blue
+        ? context.luckyColors.primaryColor
         : (style == LuckyButtonStyleEnum.primaryAlternative
               ? context.luckyColors.onSurface
               : (style == LuckyButtonStyleEnum.secondaryAlternative
                     ? context.luckyColors.n100
                     : context.luckyColors.surface));
     final Color disabledColor = style == LuckyButtonStyleEnum.primary
-        ? blue300
+        ? context.luckyColors.primaryColor300
         : context.luckyColors.n100;
     final Color textColor = style == LuckyButtonStyleEnum.primary
         ? white

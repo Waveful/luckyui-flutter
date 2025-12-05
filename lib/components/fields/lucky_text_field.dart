@@ -306,14 +306,14 @@ class _LuckyTextFieldState extends State<LuckyTextField> {
                 fontWeight: normalFontWeight,
                 height: lineHeightBase,
               ),
-              border: const UnderlineInputBorder(
-                borderSide: BorderSide(color: blue),
+              border: UnderlineInputBorder(
+                borderSide: BorderSide(color: context.luckyColors.primaryColor),
               ),
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: context.luckyColors.n200),
               ),
-              focusedBorder: const UnderlineInputBorder(
-                borderSide: BorderSide(color: blue),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: context.luckyColors.primaryColor),
               ),
               errorBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: red),

@@ -8,6 +8,12 @@ class LuckyTheme {
   /// The primary color.
   static const Color primaryColor = blue;
 
+  /// The primary color 500.
+  static const Color primaryColor500 = blue500;
+
+  /// The primary color 300.
+  static const Color primaryColor300 = blue300;
+
   /// The secondary color.
   static const Color secondaryColor = secondaryBlue;
 
@@ -119,7 +125,7 @@ class LuckyTheme {
 
   static const TextSelectionThemeData _textSelectionTheme =
       TextSelectionThemeData(
-        selectionColor: blue300,
+        selectionColor: primaryColor300,
         selectionHandleColor: primaryColor,
         cursorColor: primaryColor,
       );

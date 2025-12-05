@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:luckyui/animations/lucky_tap_animation.dart';
 import 'package:luckyui/components/typography/lucky_body.dart';
+import 'package:luckyui/theme/lucky_colors.dart';
 import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// A widget that displays a text button.
@@ -9,7 +10,7 @@ class LuckyTextButton extends StatelessWidget {
   final String text;
 
   /// The color of the text.
-  final Color color;
+  final Color? color;
 
   /// The font weight of the text.
   final FontWeight fontWeight;
@@ -27,7 +28,7 @@ class LuckyTextButton extends StatelessWidget {
   const LuckyTextButton({
     super.key,
     required this.text,
-    this.color = blue500,
+    this.color,
     this.fontWeight = semiBoldFontWeight,
     this.textAlign = TextAlign.start,
     this.padding,
@@ -52,7 +53,7 @@ class LuckyTextButton extends StatelessWidget {
             ),
         child: LuckyBody(
           text: text,
-          color: color,
+          color: color ?? context.luckyColors.primaryColor500,
           fontWeight: fontWeight,
           textAlign: textAlign,
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luckyui/theme/lucky_tokens.dart';
 
 /// A class that represents the colors of LuckyUI.
 @immutable
@@ -18,6 +19,9 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
     required this.n900,
     required this.onSurface,
     required this.surfaceTint,
+    required this.primaryColor,
+    required this.primaryColor300,
+    required this.primaryColor500,
   });
 
   /// The surface color.
@@ -59,6 +63,15 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
   /// The surfaceTint color.
   final Color surfaceTint;
 
+  /// The primary color.
+  final Color primaryColor;
+
+  /// The primary color 300.
+  final Color primaryColor300;
+
+  /// The primary color 500.
+  final Color primaryColor500;
+
   /// The light theme colors.
   static const LuckyColors light = LuckyColors(
     surface: Color(0xFFFFFFFF),
@@ -74,6 +87,9 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
     n900: Color(0xFF1A1A1A),
     onSurface: Color(0xFF000000),
     surfaceTint: Color(0xFFFFFFFF),
+    primaryColor: blue,
+    primaryColor300: blue300,
+    primaryColor500: blue500,
   );
 
   /// The dark theme colors.
@@ -91,6 +107,9 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
     n900: Color(0xFFE6E6E6),
     onSurface: Color(0xFFFFFFFF),
     surfaceTint: Color(0xFF1A1A1A),
+    primaryColor: blue,
+    primaryColor300: blue300,
+    primaryColor500: blue500,
   );
 
   @override
@@ -108,6 +127,9 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
     Color? n900,
     Color? onSurface,
     Color? surfaceTint,
+    Color? primaryColor,
+    Color? primaryColor300,
+    Color? primaryColor500,
   }) {
     return LuckyColors(
       surface: surface ?? this.surface,
@@ -123,6 +145,9 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
       n900: n900 ?? this.n900,
       onSurface: onSurface ?? this.onSurface,
       surfaceTint: surfaceTint ?? this.surfaceTint,
+      primaryColor: primaryColor ?? this.primaryColor,
+      primaryColor300: primaryColor300 ?? this.primaryColor300,
+      primaryColor500: primaryColor500 ?? this.primaryColor500,
     );
   }
 
@@ -143,6 +168,9 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
       n900: Color.lerp(n900, other.n900, t)!,
       onSurface: Color.lerp(onSurface, other.onSurface, t)!,
       surfaceTint: Color.lerp(surfaceTint, other.surfaceTint, t)!,
+      primaryColor: Color.lerp(primaryColor, other.primaryColor, t)!,
+      primaryColor300: Color.lerp(primaryColor300, other.primaryColor300, t)!,
+      primaryColor500: Color.lerp(primaryColor500, other.primaryColor500, t)!,
     );
   }
 }
