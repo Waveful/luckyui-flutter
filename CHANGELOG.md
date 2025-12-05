@@ -1,3 +1,8 @@
+## 1.0.4
+Others:
+- Implement missing parameters for various components
+- Fix multiple theme issues
+
 ## 1.0.3
 Small fixes for LuckyBottomSheet.
 
