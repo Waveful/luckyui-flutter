@@ -62,7 +62,7 @@ class LuckyProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const Color noProgressTextColor = black;
+    final Color noProgressTextColor = context.luckyColors.onSurface;
     const Color progressTextColor = white;
 
     return LayoutBuilder(
@@ -94,7 +94,7 @@ class LuckyProgressBar extends StatelessWidget {
               width: double.infinity,
               height: _shouldShowText ? _heightLarge : _heightSmall,
               decoration: BoxDecoration(
-                color: gray100,
+                color: context.luckyColors.n100,
                 borderRadius: _shouldShowText ? radiusXl : radiusSm,
               ),
             ),
