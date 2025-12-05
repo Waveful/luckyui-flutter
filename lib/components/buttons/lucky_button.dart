@@ -90,7 +90,7 @@ class LuckyButton extends StatelessWidget {
           color: disabled ? disabledColor : enabledColor,
           borderRadius: borderRadius ?? radius4xl,
           border: style == LuckyButtonStyleEnum.secondary
-              ? Border.all(color: context.luckyColors.n100)
+              ? Border.all(color: context.luckyColors.n150)
               : Border.all(color: Colors.transparent),
         ),
         alignment: Alignment.center,

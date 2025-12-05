@@ -9,6 +9,7 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
     required this.surface,
     required this.n50,
     required this.n100,
+    required this.n150,
     required this.n200,
     required this.n300,
     required this.n400,
@@ -32,6 +33,9 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
 
   /// The n100 color.
   final Color n100;
+
+  /// The n150 color.
+  final Color n150;
 
   /// The n200 color.
   final Color n200;
@@ -77,6 +81,7 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
     surface: Color(0xFFFFFFFF),
     n50: Color(0xFFF4F4F4),
     n100: Color(0xFFE6E6E6),
+    n150: Color(0xFFD9D9D9),
     n200: Color(0xFFCCCCCC),
     n300: Color(0xFFB3B3B3),
     n400: Color(0xFF999999),
@@ -97,6 +102,7 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
     surface: Color(0xFF000000),
     n50: Color(0xFF0B0B0B),
     n100: Color(0xFF1A1A1A),
+    n150: Color(0xFF262626),
     n200: Color(0xFF333333),
     n300: Color(0xFF4D4D4D),
     n400: Color(0xFF666666),
@@ -117,6 +123,7 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
     Color? surface,
     Color? n50,
     Color? n100,
+    Color? n150,
     Color? n200,
     Color? n300,
     Color? n400,
@@ -135,6 +142,7 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
       surface: surface ?? this.surface,
       n50: n50 ?? this.n50,
       n100: n100 ?? this.n100,
+      n150: n150 ?? this.n150,
       n200: n200 ?? this.n200,
       n300: n300 ?? this.n300,
       n400: n400 ?? this.n400,
@@ -158,6 +166,7 @@ class LuckyColors extends ThemeExtension<LuckyColors> {
       surface: Color.lerp(surface, other.surface, t)!,
       n50: Color.lerp(n50, other.n50, t)!,
       n100: Color.lerp(n100, other.n100, t)!,
+      n150: Color.lerp(n150, other.n150, t)!,
       n200: Color.lerp(n200, other.n200, t)!,
       n300: Color.lerp(n300, other.n300, t)!,
       n400: Color.lerp(n400, other.n400, t)!,

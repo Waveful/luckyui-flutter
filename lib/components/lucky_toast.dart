@@ -240,7 +240,7 @@ class LuckyToastMessengerState extends State<LuckyToastMessenger> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: context.luckyColors.surface,
-                  border: Border.all(color: context.luckyColors.n100),
+                  border: Border.all(color: context.luckyColors.n150),
                   borderRadius: radius2xl,
                 ),
                 margin: const EdgeInsets.symmetric(horizontal: spaceSm),
